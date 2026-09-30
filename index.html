@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ECONOMY QUEST 🚀 - Petualangan Seru IPAS Kelas 6</title>
+    <title>IPAS | EKONOMI 🚀 - Petualangan Seru IPAS Kelas 6</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -157,7 +157,7 @@
                 </div>
                 <div class="flex items-center gap-4">
                     <span>⭐ Skor: <span id="hudScore" class="text-brand-pinkBright font-bold">0</span></span>
-                    <span>📍 <span id="hudQuestionNum">Soal 1/21</span></span>
+                    <span>📍 <span id="hudQuestionNum">Soal 1/30</span></span>
                     <span id="hudLives" class="text-red-500">❤️❤️❤️</span>
                 </div>
             </div>
@@ -185,7 +185,7 @@
             <!-- Kotak Soal -->
             <div class="bg-gradient-to-br from-sky-50/50 to-pink-50/50 p-5 rounded-2xl border-2 border-sky-100 shadow-sm">
                 <h3 id="questionTitle" class="text-lg md:text-xl font-bold text-slate-800 mb-2">
-                    PERTANYAAN 01
+                    PERTANYAAN 1
                 </h3>
                 <p id="questionText" class="text-slate-700 text-base md:text-lg font-medium leading-relaxed">
                     Pertanyaan akan muncul di sini...
@@ -348,204 +348,315 @@
     </div>
 
     <!-- ========================================== -->
-    <!-- JAVASCRIPT GAME LOGIC -->
+    <!-- JAVASCRIPT GAME LOGIC (30 SOAL LENGKAP) -->
     <!-- ========================================== -->
     <script>
-        // Database 21 Soal IPAS Kelas 6 Berdasarkan Materi
+        // Database TEPAT 30 Soal Berdasarkan Gambar Ulangan Harian IPAS Kelas 6
         const gameQuestions = [
-            // LEVEL 1: MENGENAL EKONOMI (Soal 1 - 7)
+            // LEVEL 1: MENGENAL EKONOMI (Soal 1 - 10)
             {
+                id: 1,
                 level: 1,
-                tag: "A. Keberagaman Ekonomi",
+                tag: "A. Pilihan Ganda (Kegiatan Ekonomi)",
                 type: "single",
-                question: "Seorang petani menanam sayuran untuk dijual kepada masyarakat. Kegiatan tersebut termasuk bentuk ...",
-                options: ["Keberagaman ekonomi", "Kecelakaan kerja", "Bencana alam", "Pariwisata"],
-                correct: 0,
-                explanation: "Keberagaman ekonomi masyarakat terlihat dari berbagai bidang usaha yang ditekuni, seperti pertanian, perdagangan, dan jasa."
-            },
-            {
-                level: 1,
-                tag: "B. Faktor Keberagaman Ekonomi",
-                type: "single",
-                question: "Faktor utama yang menyebabkan perbedaan mata pencaharian antara masyarakat di daerah pegunungan dan pantai adalah ...",
-                options: ["Jumlah penduduk", "Sumber daya alam dan kondisi geografis", "Warna pakaian", "Jenis kendaraan"],
+                question: "Kegiatan masyarakat untuk memenuhi kebutuhan hidup sehari-hari disebut ....",
+                options: ["kegiatan sosial", "kegiatan ekonomi", "kegiatan budaya", "kegiatan politik"],
                 correct: 1,
-                explanation: "Kondisi geografis dan ketersediaan sumber daya alam sangat memengaruhi jenis mata pencaharian penduduk di suatu daerah."
+                explanation: "Kegiatan ekonomi adalah aktivitas yang dilakukan manusia untuk memenuhi kebutuhan hidup sehari-hari."
             },
             {
+                id: 2,
                 level: 1,
-                tag: "C. Sumber Daya Alam",
+                tag: "A. Pilihan Ganda (Keberagaman Ekonomi)",
                 type: "single",
-                question: "Masyarakat di daerah pesisir pantai umumnya banyak yang bekerja sebagai nelayan karena ketersediaan ...",
-                options: ["Tanah yang kering", "Sumber daya laut yang melimpah", "Pabrik tekstil modern", "Gedung bertingkat"],
-                correct: 1,
-                explanation: "Sumber daya alam laut di daerah pesisir dimanfaatkan oleh masyarakat untuk bekerja sebagai nelayan atau petani tambak."
-            },
-            {
-                level: 1,
-                tag: "D. Keterampilan & Pendidikan",
-                type: "single",
-                question: "Keterampilan dan tingkat pendidikan seseorang dapat memengaruhi ...",
-                options: ["Jenis pekerjaan dan pendapatan ekonomi", "Tinggi badan seseorang", "Jumlah saudara kandung", "Warna rambut"],
+                question: "Salah satu contoh kegiatan ekonomi yang banyak dilakukan masyarakat di daerah pedesaan adalah ....",
+                options: ["pertanian", "perbankan", "periklanan", "industri teknologi"],
                 correct: 0,
-                explanation: "Keterampilan dan pendidikan yang tinggi membantu seseorang mendapatkan pekerjaan yang lebih baik serta meningkatkan taraf ekonomi."
+                explanation: "Masyarakat pedesaan umumnya mengandalkan sektor pertanian karena ketersediaan lahan yang subur."
             },
             {
+                id: 3,
                 level: 1,
-                tag: "E. Teknologi",
+                tag: "A. Pilihan Ganda (Keragaman Usaha)",
                 type: "single",
-                question: "Penggunaan alat dan mesin modern dalam mengolah hasil bumi bertujuan untuk ...",
-                options: ["Memperlama waktu kerja", "Membuat pekerjaan semakin sulit", "Meningkatkan efisiensi dan hasil produksi", "Menghabiskan biaya"],
+                question: "Perhatikan kegiatan berikut!\n1. Menanam padi\n2. Menangkap ikan\n3. Membuat kerajinan\n4. Menjual barang di pasar\nKegiatan tersebut menunjukkan bahwa kegiatan ekonomi masyarakat ....",
+                options: ["hanya dilakukan di daerah perkotaan", "hanya berkaitan dengan pertanian", "sangat beragam", "hanya dilakukan oleh pedagang"],
                 correct: 2,
-                explanation: "Teknologi modern dapat membantu meningkatkan efisiensi, kecepatan, dan jumlah hasil produksi."
+                explanation: "Kegiatan masyarakat sangat beragam mulai dari pertanian, perikanan, kerajinan, hingga perdagangan."
             },
             {
+                id: 4,
                 level: 1,
-                tag: "F. Modal",
+                tag: "A. Pilihan Ganda (Fungsi Ekonomi)",
                 type: "single",
-                question: "Dalam memulai suatu usaha atau kegiatan ekonomi, hal penting yang digunakan untuk membeli bahan baku dan alat adalah ...",
-                options: ["Modal", "Piagam penghargaan", "Buku cerita", "Musik pengantar"],
-                correct: 0,
-                explanation: "Modal berupa uang atau barang sangat diperlukan untuk memulai dan mengembangkan kegiatan ekonomi."
+                question: "Salah satu fungsi kegiatan ekonomi masyarakat adalah ....",
+                options: ["mengurangi kebutuhan manusia", "memenuhi kebutuhan pokok", "membatasi lapangan pekerjaan", "mengurangi penggunaan barang dan jasa"],
+                correct: 1,
+                explanation: "Fungsi utama kegiatan ekonomi adalah untuk memenuhi kebutuhan pokok manusia."
             },
             {
+                id: 5,
                 level: 1,
-                tag: "A. Keberagaman Ekonomi",
-                type: "complex",
-                question: "Manakah yang termasuk contoh bentuk kegiatan ekonomi masyarakat di lingkungan sekitar? (Pilih semua jawaban yang benar!)",
-                options: ["Bertani di sawah", "Menjual makanan di warung", "Belajar kelompok di kelas", "Menjadi nelayan di laut"],
-                correct: [0, 1, 3],
-                explanation: "Bertani, berdagang, dan menjadi nelayan adalah contoh nyata kegiatan ekonomi untuk memenuhi kebutuhan hidup."
+                tag: "A. Pilihan Ganda (Faktor Geografis)",
+                type: "single",
+                question: "Masyarakat di daerah yang memiliki tanah subur dan lahan pertanian luas cenderung mengembangkan kegiatan ekonomi berupa ....",
+                options: ["pertanian", "industri film", "jasa transportasi", "desain interior"],
+                correct: 0,
+                explanation: "Tanah subur dan lahan luas sangat mendukung berkembangnya kegiatan ekonomi di bidang pertanian."
+            },
+            {
+                id: 6,
+                level: 1,
+                tag: "A. Pilihan Ganda (Faktor Perbedaan)",
+                type: "single",
+                question: "Perbedaan kegiatan ekonomi antara daerah pedesaan dan perkotaan salah satunya dipengaruhi oleh ....",
+                options: ["warna rumah penduduk", "sumber daya alam dan kondisi lingkungan", "jumlah hari dalam seminggu", "bentuk pakaian masyarakat"],
+                correct: 1,
+                explanation: "Kondisi lingkungan dan ketersediaan sumber daya alam menentukan jenis mata pencaharian di suatu daerah."
+            },
+            {
+                id: 7,
+                level: 1,
+                tag: "A. Pilihan Ganda (Faktor Keberagaman)",
+                type: "single",
+                question: "Berikut yang merupakan faktor yang dapat memengaruhi keberagaman ekonomi masyarakat adalah ....",
+                options: ["sumber daya alam", "warna kendaraan", "bentuk rumah", "jenis permainan"],
+                correct: 0,
+                explanation: "Sumber daya alam adalah faktor utama yang memengaruhi keberagaman jenis usaha masyarakat."
+            },
+            {
+                id: 8,
+                level: 1,
+                tag: "A. Pilihan Ganda (Pendidikan & Keterampilan)",
+                type: "single",
+                question: "Masyarakat dengan keterampilan dan pendidikan yang sesuai dapat memiliki kesempatan untuk bekerja pada bidang yang ....",
+                options: ["membutuhkan keahlian tertentu", "tidak membutuhkan pengetahuan", "hanya berkaitan dengan pertanian", "tidak menggunakan teknologi"],
+                correct: 0,
+                explanation: "Pendidikan dan keterampilan membuka peluang bekerja di bidang yang membutuhkan keahlian khusus."
+            },
+            {
+                id: 9,
+                level: 1,
+                tag: "A. Pilihan Ganda (Produksi Petani)",
+                type: "single",
+                question: "Seorang petani menanam sayuran dan menghasilkan sayuran untuk dijual kepada masyarakat. Kegiatan tersebut termasuk tahap ....",
+                options: ["konsumsi", "distribusi", "produksi", "promosi"],
+                correct: 2,
+                explanation: "Menghasilkan barang atau jasa disebut sebagai kegiatan produksi."
+            },
+            {
+                id: 10,
+                level: 1,
+                tag: "A. Pilihan Ganda (Distribusi)",
+                type: "single",
+                question: "Pedagang yang menyalurkan barang dari produsen kepada konsumen melakukan kegiatan ....",
+                options: ["produksi", "distribusi", "konsumsi", "inovasi"],
+                correct: 1,
+                explanation: "Menyalurkan barang dari produsen ke konsumen adalah definisi dari distribusi."
             },
 
-            // LEVEL 2: PETUALANGAN EKONOMI / PRODUKSI, DISTRIBUSI, KONSUMSI (Soal 8 - 14)
+            // LEVEL 2: PETUALANGAN EKONOMI / PRODUKSI, DISTRIBUSI, KONSUMSI (Soal 11 - 20)
             {
+                id: 11,
                 level: 2,
-                tag: "G. Produksi",
+                tag: "A. Pilihan Ganda (Konsumsi)",
                 type: "single",
-                question: "Kegiatan menghasilkan barang atau jasa untuk menambah nilai guna disebut ...",
-                options: ["Produksi", "Distribusi", "Konsumsi", "Inovasi"],
-                correct: 0,
-                explanation: "Produksi adalah kegiatan yang menghasilkan barang atau jasa guna memenuhi kebutuhan konsumen."
+                question: "Contoh kegiatan konsumsi adalah ....",
+                options: ["petani menanam padi", "pabrik membuat sepatu", "pedagang mengirim barang ke toko", "seseorang membeli makanan untuk dimakan"],
+                correct: 3,
+                explanation: "Membeli dan memakan makanan adalah contoh nyata kegiatan menghabiskan nilai guna barang (konsumsi)."
             },
             {
+                id: 12,
                 level: 2,
-                tag: "G. Produksi",
+                tag: "A. Pilihan Ganda (Ekonomi Kreatif)",
                 type: "single",
-                question: "Orang atau pihak yang melakukan kegiatan menghasilkan barang atau jasa disebut ...",
-                options: ["Konsumen", "Produsen", "Distributor", "Turis"],
+                question: "Ekonomi kreatif merupakan kegiatan ekonomi yang berfokus pada ....",
+                options: ["penggunaan sumber daya alam sebanyak-banyaknya", "ide, kreativitas, dan inovasi", "kegiatan pertanian saja", "penjualan barang tanpa perubahan"],
                 correct: 1,
-                explanation: "Produsen adalah sebutan bagi orang atau badan usaha yang menghasilkan barang atau jasa."
+                explanation: "Ekonomi kreatif sangat mengandalkan ide, kreativitas, dan inovasi intelektual."
             },
             {
+                id: 13,
                 level: 2,
-                tag: "H. Distribusi",
+                tag: "A. Pilihan Ganda (Ciri Ekonomi Kreatif)",
                 type: "single",
-                question: "Pedagang menyalurkan barang dari pabrik produsen kepada konsumen di toko-toko. Kegiatan tersebut dinamakan ...",
-                options: ["Produksi", "Konsumsi", "Distribusi", "Kreativitas"],
+                question: "Salah satu ciri ekonomi kreatif adalah ....",
+                options: ["produk tidak memiliki keunikan", "tidak membutuhkan kreativitas", "memanfaatkan ide yang unik dan inovatif", "hanya menghasilkan produk pertanian"],
                 correct: 2,
-                explanation: "Distribusi adalah kegiatan menyalurkan atau mendistribusikan barang dari produsen ke tangan konsumen."
+                explanation: "Pemanfaatan ide yang unik dan inovatif menjadi ciri khas utama dalam ekonomi kreatif."
             },
             {
+                id: 14,
                 level: 2,
-                tag: "H. Distribusi",
+                tag: "A. Pilihan Ganda (Film & Animasi)",
                 type: "single",
-                question: "Pihak yang menyalurkan barang dari produsen ke konsumen disebut ...",
-                options: ["Distributor", "Produsen", "Konsumen", "Kreator"],
+                question: "Pembuatan film dan animasi termasuk kegiatan ekonomi kreatif yang membutuhkan ....",
+                options: ["kreativitas dan teknologi", "lahan pertanian", "hasil pertambangan saja", "kegiatan menangkap ikan"],
                 correct: 0,
-                explanation: "Distributor adalah perantara yang menyalurkan barang atau jasa dari produsen kepada konsumen."
+                explanation: "Industri film dan animasi sangat bergantung pada kreativitas pencipta serta dukungan teknologi digital."
             },
             {
+                id: 15,
                 level: 2,
-                tag: "I. Konsumsi",
+                tag: "A. Pilihan Ganda (Penerapan Ekonomi Kreatif)",
                 type: "single",
-                question: "Ibu membeli buah di pasar lalu keluarga memakannya di rumah. Kegiatan keluarga memakan buah tersebut disebut ...",
-                options: ["Produksi", "Distribusi", "Konsumsi", "Investasi"],
-                correct: 2,
-                explanation: "Konsumsi adalah kegiatan menghabiskan atau mengurangi nilai guna suatu barang dan jasa untuk memenuhi kebutuhan."
+                question: "Seorang pengusaha membuat makanan tradisional dengan kemasan modern agar lebih menarik dan mudah dipasarkan. Kegiatan tersebut menunjukkan penerapan ....",
+                options: ["ekonomi kreatif", "konsumsi", "kegiatan pertanian", "distribusi barang mentah"],
+                correct: 0,
+                explanation: "Pengembangan kemasan produk menjadi lebih modern dan bernilai tambah merupakan wujud ekonomi kreatif."
             },
             {
+                id: 16,
                 level: 2,
-                tag: "I. Konsumsi",
-                type: "single",
-                question: "Orang atau pihak yang memakai, menghabiskan, atau menikmati barang dan jasa disebut ...",
-                options: ["Produsen", "Konsumen", "Distributor", "Aktor"],
-                correct: 1,
-                explanation: "Konsumen adalah pihak yang menggunakan atau mengonsumsi barang dan jasa."
-            },
-            {
-                level: 2,
-                tag: "H. Distribusi",
+                tag: "B. Pilihan Ganda Kompleks (Kegiatan Ekonomi)",
                 type: "complex",
-                question: "Manakah yang termasuk contoh kegiatan distribusi dalam kehidupan sehari-hari? (Pilih semua jawaban yang benar!)",
-                options: ["Kurir mengantar paket belanja online", "Pabrik merakit mobil baru", "Truk mengangkut hasil panen ke pasar", "Siswa memakan nasi di kantin"],
-                correct: [0, 2],
-                explanation: "Kurir mengantar paket dan truk mengangkut hasil panen merupakan contoh kegiatan menyalurkan barang (distribusi)."
-            },
-
-            // LEVEL 3: DUNIA EKONOMI KREATIF (Soal 15 - 21)
-            {
-                level: 3,
-                tag: "J. Ekonomi Kreatif",
-                type: "single",
-                question: "Konsep ekonomi di era modern yang mengandalkan ide, kreativitas, dan keterampilan intelektual disebut ...",
-                options: ["Ekonomi tradisional", "Ekonomi kreatif", "Ekonomi agraris", "Ekonomi barter"],
-                correct: 1,
-                explanation: "Ekonomi kreatif adalah gelombang ekonomi baru yang berfokus pada kreativitas dan ide intelektual manusia."
-            },
-            {
-                level: 3,
-                tag: "K. Kreativitas & L. Inovasi",
-                type: "single",
-                question: "Kemampuan menciptakan suatu ide atau gagasan baru yang unik disebut ...",
-                options: ["Kreativitas", "Konsumsi", "Distribusi", "Imitasi"],
-                correct: 0,
-                explanation: "Kreativitas adalah kemampuan menghasilkan ide atau cara baru yang unik dan orisinal."
-            },
-            {
-                level: 3,
-                tag: "L. Inovasi",
-                type: "single",
-                question: "Penerapan suatu ide baru atau pengembangan produk lama menjadi lebih bermanfaat disebut ...",
-                options: ["Inovasi", "Produksi massal", "Distribusi ulang", "Penyimpanan"],
-                correct: 0,
-                explanation: "Inovasi adalah pembaruan atau penciptaan hal baru yang memberikan nilai tambah lebih baik."
-            },
-            {
-                level: 3,
-                tag: "M. Film, Animasi & N. Desain",
-                type: "single",
-                question: "Pembuatan film kartun, animasi, dan perancangan mode pakaian (fashion) merupakan contoh dari bidang ...",
-                options: ["Pertanian konvensional", "Industri ekonomi kreatif", "Pertambangan batu bara", "Perikanan laut"],
-                correct: 1,
-                explanation: "Film, animasi, dan desain mode adalah beberapa subsektor penting dalam industri ekonomi kreatif."
-            },
-            {
-                level: 3,
-                tag: "P. Teknologi & Aplikasi",
-                type: "single",
-                question: "Perkembangan teknologi digital dan aplikasi smartphone saat ini sangat membantu pelaku ekonomi kreatif dalam hal ...",
-                options: ["Mempercepat promosi dan pemasaran produk", "Membuat perangkat rusak", "Menghentikan semua kegiatan usaha", "Menutup akses pasar"],
-                correct: 0,
-                explanation: "Teknologi dan aplikasi digital memudahkan pelaku ekonomi kreatif mempromosikan dan menjual produk secara luas."
-            },
-            {
-                level: 3,
-                tag: "Q. Manfaat Ekonomi Kreatif",
-                type: "single",
-                question: "Apa salah satu manfaat utama dari berkembangnya ekonomi kreatif di masyarakat?",
-                options: ["Menciptakan lapangan kerja baru dan mengurangi pengangguran", "Membuat masyarakat malas bekerja", "Mengurangi kreativitas anak muda", "Menghilangkan teknologi"],
-                correct: 0,
-                explanation: "Ekonomi kreatif membuka banyak lapangan pekerjaan baru dan mendongkrak kesejahteraan masyarakat."
-            },
-            {
-                level: 3,
-                tag: "J. Ciri-ciri Ekonomi Kreatif",
-                type: "complex",
-                question: "Manakah yang merupakan ciri-ciri dari ekonomi kreatif? (Pilih semua jawaban yang benar!)",
-                options: ["Mengandalkan ide dan kreativitas", "Menghasilkan produk yang unik", "Memanfaatkan teknologi digital", "Hanya mengandalkan tenaga otot saja"],
+                question: "Manakah yang termasuk kegiatan ekonomi masyarakat? (Pilih semua jawaban yang benar!)",
+                options: ["Pertanian", "Perikanan", "Peternakan", "Bermain permainan"],
                 correct: [0, 1, 2],
-                explanation: "Ekonomi kreatif berpusat pada ide, keunikan produk, serta pemanfaatan teknologi, bukan sekadar tenaga fisik."
+                explanation: "Pertanian, perikanan, dan peternakan adalah bidang kegiatan ekonomi masyarakat."
+            },
+            {
+                id: 17,
+                level: 2,
+                tag: "B. Pilihan Ganda Kompleks (Peran Ekonomi)",
+                type: "complex",
+                question: "Berikut yang termasuk peran dan fungsi ekonomi masyarakat adalah .... (Pilih semua jawaban yang benar!)",
+                options: ["Memenuhi kebutuhan pokok", "Menciptakan lapangan kerja", "Menjaga ketersediaan barang dan jasa", "Menghilangkan seluruh sumber daya alam"],
+                correct: [0, 1, 2],
+                explanation: "Kegiatan ekonomi memenuhi kebutuhan pokok, menciptakan lapangan kerja, serta menjaga ketersediaan barang/jasa."
+            },
+            {
+                id: 18,
+                level: 2,
+                tag: "B. Pilihan Ganda Kompleks (Pedesaan)",
+                type: "complex",
+                question: "Kegiatan ekonomi yang banyak ditemukan di pedesaan antara lain .... (Pilih semua jawaban yang benar!)",
+                options: ["Pertanian", "Perikanan", "Peternakan", "Industri teknologi digital"],
+                correct: [0, 1, 2],
+                explanation: "Pertanian, perikanan, dan peternakan banyak dijumpai di wilayah pedesaan."
+            },
+            {
+                id: 19,
+                level: 2,
+                tag: "B. Pilihan Ganda Kompleks (Perkotaan)",
+                type: "complex",
+                question: "Kegiatan ekonomi yang umum berkembang di daerah perkotaan antara lain .... (Pilih semua jawaban yang benar!)",
+                options: ["Industri dan manufaktur", "Jasa", "Perdagangan", "Pertanian sawah sebagai kegiatan utama seluruh masyarakat"],
+                correct: [0, 1, 2],
+                explanation: "Perkotaan didominasi oleh sektor industri, jasa, dan perdagangan."
+            },
+            {
+                id: 20,
+                level: 2,
+                tag: "B. Pilihan Ganda Kompleks (Faktor Keberagaman)",
+                type: "complex",
+                question: "Manakah yang termasuk faktor yang memengaruhi keberagaman ekonomi masyarakat? (Pilih semua jawaban yang benar!)",
+                options: ["Sumber daya alam", "Keahlian dan pendidikan", "Teknologi", "Modal dan pembiayaan"],
+                correct: [0, 1, 2, 3],
+                explanation: "Sumber daya alam, keahlian, teknologi, serta modal semuanya memengaruhi keberagaman ekonomi."
+            },
+
+            // LEVEL 3: DUNIA EKONOMI KREATIF (Soal 21 - 30)
+            {
+                id: 21,
+                level: 3,
+                tag: "B. Pilihan Ganda Kompleks (Produksi)",
+                type: "complex",
+                question: "Perhatikan tahapan kegiatan ekonomi berikut. Manakah yang termasuk produksi? (Pilih semua jawaban yang benar!)",
+                options: ["Petani menanam sayuran", "Pabrik membuat pakaian", "Pengrajin membuat keranjang", "Seseorang membeli makanan untuk dimakan"],
+                correct: [0, 1, 2],
+                explanation: "Menanam sayuran, membuat pakaian, dan membuat keranjang adalah kegiatan menghasilkan barang (produksi)."
+            },
+            {
+                id: 22,
+                level: 3,
+                tag: "B. Pilihan Ganda Kompleks (Distribusi)",
+                type: "complex",
+                question: "Manakah kegiatan yang termasuk distribusi? (Pilih semua jawaban yang benar!)",
+                options: ["Pedagang menjual sayuran hasil tani di pasar", "Barang dari pabrik dikirim ke toko", "Penjual kopi keliling memperoleh kopi dari pemasok", "Seseorang menggunakan pakaian yang telah dibeli"],
+                correct: [0, 1, 2],
+                explanation: "Menjual di pasar, mengirim barang ke toko, dan menyetok dagangan dari pemasok adalah bagian dari distribusi."
+            },
+            {
+                id: 23,
+                level: 3,
+                tag: "B. Pilihan Ganda Kompleks (Ciri Ekonomi Kreatif)",
+                type: "complex",
+                question: "Manakah yang merupakan ciri ekonomi kreatif? (Pilih semua jawaban yang benar!)",
+                options: ["Menggunakan ide kreatif", "Menghasilkan produk yang unik", "Memanfaatkan teknologi", "Tidak membutuhkan keterampilan manusia"],
+                correct: [0, 1, 2],
+                explanation: "Ekonomi kreatif mengandalkan ide, produk unik, dan teknologi, serta tetap membutuhkan keterampilan manusia."
+            },
+            {
+                id: 24,
+                level: 3,
+                tag: "B. Pilihan Ganda Kompleks (Bidang Ekonomi Kreatif)",
+                type: "complex",
+                question: "Manakah yang termasuk bidang ekonomi kreatif? (Pilih semua jawaban yang benar!)",
+                options: ["Seni dan budaya", "Desain dan mode", "Film dan animasi", "Teknologi dan aplikasi digital"],
+                correct: [0, 1, 2, 3],
+                explanation: "Seni budaya, desain mode, film animasi, dan teknologi digital adalah subsektor resmi ekonomi kreatif."
+            },
+            {
+                id: 25,
+                level: 3,
+                tag: "B. Pilihan Ganda Kompleks (Manfaat Ekonomi Kreatif)",
+                type: "complex",
+                question: "Ekonomi kreatif dapat memberikan manfaat berupa .... (Pilih semua jawaban yang benar!)",
+                options: ["Membuka peluang pekerjaan", "Meningkatkan pendapatan", "Mendorong inovasi", "Menghilangkan kebutuhan masyarakat terhadap barang dan jasa"],
+                correct: [0, 1, 2],
+                explanation: "Ekonomi kreatif membuka lapangan kerja, menaikkan pendapatan, dan mendorong inovasi, bukan menghilangkan kebutuhan."
+            },
+            {
+                id: 26,
+                level: 3,
+                tag: "C. Pernyataan Benar/Salah",
+                type: "boolean",
+                question: "Kegiatan ekonomi masyarakat dapat berbeda-beda sesuai kondisi lingkungan dan sumber daya alam yang tersedia.",
+                options: ["Salah", "Benar"],
+                correct: 1, // Benar
+                explanation: "Kondisi lingkungan dan SDA sangat menentukan perbedaan kegiatan ekonomi di berbagai wilayah."
+            },
+            {
+                id: 27,
+                level: 3,
+                tag: "C. Pernyataan Benar/Salah",
+                type: "boolean",
+                question: "Produksi merupakan kegiatan menggunakan barang atau jasa untuk memenuhi kebutuhan hidup.",
+                options: ["Salah", "Benar"],
+                correct: 0, // Salah (Kegiatan menggunakan/menghabiskan barang adalah konsumsi, produksi adalah menghasilkan)
+                explanation: "Pernyataan tersebut salah karena menggunakan barang/jasa untuk memenuhi kebutuhan adalah konsumsi, sedangkan produksi adalah menghasilkan barang/jasa."
+            },
+            {
+                id: 28,
+                level: 3,
+                tag: "C. Pernyataan Benar/Salah",
+                type: "boolean",
+                question: "Distribusi merupakan kegiatan menyalurkan barang dari produsen agar dapat sampai kepada konsumen.",
+                options: ["Salah", "Benar"],
+                correct: 1, // Benar
+                explanation: "Distribusi memang bertugas menyalurkan barang dan jasa dari produsen ke tangan konsumen."
+            },
+            {
+                id: 29,
+                level: 3,
+                tag: "C. Pernyataan Benar/Salah",
+                type: "boolean",
+                question: "Ekonomi kreatif hanya dapat dilakukan oleh masyarakat yang bekerja di bidang seni.",
+                options: ["Salah", "Benar"],
+                correct: 0, // Salah
+                explanation: "Ekonomi kreatif mencakup berbagai bidang luas seperti teknologi, desain, kuliner, aplikasi, dan media, bukan hanya seni."
+            },
+            {
+                id: 30,
+                level: 3,
+                tag: "C. Pernyataan Benar/Salah",
+                type: "boolean",
+                question: "Teknologi dapat membantu perkembangan ekonomi kreatif, misalnya dalam pembuatan aplikasi, permainan, film, dan produk digital.",
+                options: ["Salah", "Benar"],
+                correct: 1, // Benar
+                explanation: "Teknologi digital sangat esensial dalam mendukung pengembangan produk kreatif seperti aplikasi, game, dan film."
             }
         ];
 
@@ -558,7 +669,7 @@
             lives: 3,
             hintsLeft: 3,
             userAnswers: [], // Menyimpan riwayat jawaban untuk review
-            selectedOptions: [], // Untuk pilihan ganda biasa / kompleks
+            selectedOptions: [], // Untuk pilihan ganda / kompleks / boolean
             answeredCurrent: false
         };
 
@@ -638,17 +749,17 @@
             const desc = document.getElementById("levelDesc");
 
             if (levelNum === 1) {
-                badge.textContent = "🌱 LEVEL 1";
+                badge.textContent = "🌱 LEVEL 1 (Soal 1–10)";
                 title.textContent = "MENGENAL EKONOMI";
-                desc.textContent = "Soal mudah tentang kegiatan ekonomi dan keberagaman ekonomi masyarakat.";
+                desc.textContent = "Soal tentang kegiatan ekonomi, keberagaman ekonomi, dan faktor lingkungan masyarakat.";
             } else if (levelNum === 2) {
-                badge.textContent = "🚚 LEVEL 2";
+                badge.textContent = "🚚 LEVEL 2 (Soal 11–20)";
                 title.textContent = "PETUALANGAN EKONOMI";
-                desc.textContent = "Soal tentang kegiatan produksi, distribusi, dan konsumsi dalam kehidupan sehari-hari.";
+                desc.textContent = "Soal tentang produksi, distribusi, konsumsi, dan pilihan ganda kompleks.";
             } else if (levelNum === 3) {
-                badge.textContent = "💡 LEVEL 3";
+                badge.textContent = "💡 LEVEL 3 (Soal 21–30)";
                 title.textContent = "DUNIA EKONOMI KREATIF";
-                desc.textContent = "Soal tentang kreativitas, inovasi, teknologi, dan manfaat ekonomi kreatif.";
+                desc.textContent = "Soal tentang ekonomi kreatif, ciri-ciri, subsektor, dan pernyataan benar/salah.";
             }
         }
 
@@ -673,8 +784,10 @@
             document.getElementById("hudLives").textContent = hearts;
 
             // Progress bar
-            const progress = ((gameState.currentQuestionIndex) / gameQuestions.length) * 100;
-            document.getElementById("progressBar").style.width = `${progress}%`;
+            const total = gameQuestions.length;
+            const current = gameState.currentQuestionIndex + 1;
+            const pct = Math.round((current / total) * 100);
+            document.getElementById("progressBar").style.width = `${pct}%`;
         }
 
         // Load Soal Aktif
@@ -686,7 +799,7 @@
             const q = gameQuestions[gameState.currentQuestionIndex];
 
             document.getElementById("questionTag").textContent = q.tag;
-            document.getElementById("questionTitle").textContent = `PERTANYAAN ${String(gameState.currentQuestionIndex + 1).padStart(2, '0')}`;
+            document.getElementById("questionTitle").textContent = `PERTANYAAN ${String(q.id).padStart(2, '0')}`;
             document.getElementById("questionText").textContent = q.question;
 
             const complexNote = document.getElementById("complexNote");
@@ -726,7 +839,7 @@
 
             const buttons = document.querySelectorAll(".option-btn");
 
-            if (type === "single") {
+            if (type === "single" || type === "boolean") {
                 buttons.forEach(b => {
                     b.classList.remove("border-brand-pinkBright", "bg-pink-50");
                     b.classList.add("border-sky-100", "bg-sky-50/50");
@@ -768,7 +881,7 @@
             const q = gameQuestions[gameState.currentQuestionIndex];
             let isCorrect = false;
 
-            if (q.type === "single") {
+            if (q.type === "single" || q.type === "boolean") {
                 isCorrect = (gameState.selectedOptions[0] === q.correct);
             } else {
                 // Cek array kompleks
@@ -783,10 +896,11 @@
                 type: q.type,
                 options: q.options,
                 userAnswer: [...gameState.selectedOptions],
-                correctAnswer: q.type === "single" ? [q.correct] : q.correct,
+                correctAnswer: (q.type === "single" || q.type === "boolean") ? [q.correct] : q.correct,
                 isCorrect: isCorrect,
                 explanation: q.explanation,
-                tag: q.tag
+                tag: q.tag,
+                id: q.id
             });
 
             const feedbackContainer = document.getElementById("feedbackContainer");
@@ -809,7 +923,7 @@
                 feedbackContainer.querySelector("div span").textContent = "💡";
                 
                 let correctText = "";
-                if (q.type === "single") {
+                if (q.type === "single" || q.type === "boolean") {
                     correctText = `Jawaban yang benar: ${q.options[q.correct]}`;
                 } else {
                     let correctStrs = q.correct.map(i => q.options[i]).join(", ");
@@ -833,12 +947,14 @@
         function nextQuestion() {
             gameState.currentQuestionIndex++;
 
-            // Cek perpindahan level otomatis berdasarkan indeks soal
-            // Level 1: 0 - 6 (7 soal), Level 2: 7 - 13 (7 soal), Level 3: 14 - 20 (7 soal)
-            if (gameState.currentQuestionIndex === 7 && gameState.currentLevel === 1) {
+            // Cek perpindahan level otomatis berdasarkan indeks soal (30 soal total)
+            // Level 1: Indeks 0 - 9 (Soal 1 - 10)
+            // Level 2: Indeks 10 - 19 (Soal 11 - 20)
+            // Level 3: Indeks 20 - 29 (Soal 21 - 30)
+            if (gameState.currentQuestionIndex === 10 && gameState.currentLevel === 1) {
                 showLevelCompletionScreen(1);
                 return;
-            } else if (gameState.currentQuestionIndex === 14 && gameState.currentLevel === 2) {
+            } else if (gameState.currentQuestionIndex === 20 && gameState.currentLevel === 2) {
                 showLevelCompletionScreen(2);
                 return;
             }
@@ -874,7 +990,6 @@
 
             const q = gameQuestions[gameState.currentQuestionIndex];
             if (q.type === "single") {
-                // Cari opsi salah untuk dihilangkan/diberi clue
                 const buttons = document.querySelectorAll(".option-btn");
                 let wrongIndices = [];
                 q.options.forEach((_, idx) => {
@@ -887,7 +1002,7 @@
                 }
             }
 
-            showCustomAlert(`Petunjuk: ${q.explanation.substring(0, 80)}...`);
+            showCustomAlert(`Petunjuk: ${q.explanation.substring(0, 90)}...`);
         }
 
         // Opsi Nyawa Habis: Coba Lagi Level
@@ -896,11 +1011,11 @@
             gameState.lives = 3;
             // Kembalikan ke awal level saat ini
             if (gameState.currentLevel === 1) gameState.currentQuestionIndex = 0;
-            else if (gameState.currentLevel === 2) gameState.currentQuestionIndex = 7;
-            else if (gameState.currentLevel === 3) gameState.currentQuestionIndex = 14;
+            else if (gameState.currentLevel === 2) gameState.currentQuestionIndex = 10;
+            else if (gameState.currentLevel === 3) gameState.currentQuestionIndex = 20;
 
             document.getElementById("game-hud").classList.remove("hidden-screen");
-            transitionScreens("screen-quiz", "screen-quiz"); // refresh
+            transitionScreens("screen-quiz", "screen-quiz");
             loadQuestion();
         }
 
@@ -945,11 +1060,11 @@
             const container = document.getElementById("reviewListContainer");
             container.innerHTML = "";
 
-            gameState.userAnswers.forEach((ans, idx) => {
+            gameState.userAnswers.forEach((ans) => {
                 let userStr = "";
                 let correctStr = "";
 
-                if (ans.type === "single") {
+                if (ans.type === "single" || ans.type === "boolean") {
                     userStr = ans.userAnswer.length > 0 ? ans.options[ans.userAnswer[0]] : "Tidak dijawab";
                     correctStr = ans.options[ans.correctAnswer[0]];
                 } else {
@@ -961,7 +1076,7 @@
                 item.className = `p-4 rounded-2xl border-2 ${ans.isCorrect ? 'border-emerald-200 bg-emerald-50/50' : 'border-red-200 bg-red-50/50'} space-y-1 text-sm`;
                 
                 item.innerHTML = `
-                    <div class="font-bold text-slate-800">Soal ${idx + 1}: ${ans.question}</div>
+                    <div class="font-bold text-slate-800">Soal ${ans.id}: ${ans.question}</div>
                     <div class="text-xs text-slate-500 font-semibold">${ans.tag}</div>
                     <div class="pt-1">Jawabanmu: <span class="font-semibold ${ans.isCorrect ? 'text-emerald-600' : 'text-red-500'}">${userStr} ${ans.isCorrect ? '✅' : '❌'}</span></div>
                     ${!ans.isCorrect ? `<div class="text-slate-700">Jawaban benar: <span class="font-semibold text-emerald-600">${correctStr}</span></div>` : ''}
