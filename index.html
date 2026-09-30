@@ -28,6 +28,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Confetti Library -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- jsPDF & AutoTable CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -109,6 +112,127 @@
                     <span>▶ MULAI BERMAIN</span>
                 </button>
             </div>
+
+            <!-- Pemisah Area Guru -->
+            <div class="pt-2 border-t border-sky-100 max-w-md mx-auto">
+                <p class="text-xs text-slate-400 font-bold uppercase tracking-wider mb-2">👩‍🏫 KHUSUS GURU</p>
+                <button type="button" onclick="openTeacherMode()" class="w-full py-3 bg-gradient-to-r from-brand-blueBright to-sky-600 hover:from-sky-600 text-white font-bold rounded-xl shadow-md transition transform hover:-translate-y-0.5 pointer-events-auto text-base flex items-center justify-center gap-2">
+                    <span>👩‍🏫 MODE GURU</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- HALAMAN PIN GURU -->
+        <!-- ========================================== -->
+        <div id="screen-teacher-pin" class="hidden-screen space-y-6 text-center py-8 max-w-md mx-auto">
+            <div class="text-5xl">🔐</div>
+            <h2 class="text-2xl font-extrabold text-slate-800">
+                VERIFIKASI MODE GURU
+            </h2>
+            <p class="text-slate-600 text-sm font-medium">"Masukkan PIN akses khusus guru."</p>
+
+            <div class="bg-sky-50 p-6 rounded-2xl border-2 border-sky-100 space-y-4 shadow-inner">
+                <input type="password" id="teacherPinInput" placeholder="Masukkan PIN" class="w-full p-4 rounded-xl border-2 border-sky-300 focus:border-brand-blueBright focus:outline-none bg-white font-semibold text-center text-xl tracking-widest text-slate-700 shadow-sm">
+                <div id="pinErrorMsg" class="text-red-500 text-xs font-bold hidden">PIN salah. Silakan coba lagi.</div>
+                
+                <div class="flex gap-2 pt-2">
+                    <button type="button" onclick="backToWelcomeFromPin()" class="w-1/2 py-3 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold rounded-xl shadow transition pointer-events-auto">
+                        BATAL
+                    </button>
+                    <button type="button" onclick="verifyTeacherPIN()" class="w-1/2 py-3 bg-brand-blueBright hover:bg-brand-blueDark text-white font-bold rounded-xl shadow transition pointer-events-auto">
+                        MASUK
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- HALAMAN DASHBOARD GURU -->
+        <!-- ========================================== -->
+        <div id="screen-teacher" class="hidden-screen space-y-6">
+            <div class="flex flex-col md:flex-row justify-between items-center border-b border-sky-100 pb-4 gap-4">
+                <div>
+                    <h2 class="text-2xl font-extrabold text-slate-800 flex items-center gap-2">
+                        <span>👩‍🏫</span> <span>DASHBOARD GURU</span>
+                    </h2>
+                    <p class="text-xs text-slate-500 font-medium">"Rekap Hasil Belajar Siswa"</p>
+                </div>
+                <button type="button" onclick="backToWelcomeFromTeacher()" class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold rounded-xl shadow transition pointer-events-auto text-sm flex items-center gap-2">
+                    🏠 KEMBALI KE HOME
+                </button>
+            </div>
+
+            <!-- Kartu Statistik -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div class="bg-sky-50 p-3 rounded-xl border border-sky-100 text-center">
+                    <p class="text-xs text-slate-500 font-semibold">👩‍🎓 TOTAL SISWA</p>
+                    <p id="statTotalStudents" class="text-xl font-extrabold text-brand-blueBright">0</p>
+                </div>
+                <div class="bg-pink-50 p-3 rounded-xl border border-pink-100 text-center">
+                    <p class="text-xs text-slate-500 font-semibold">📝 TOTAL PERCOBAAN</p>
+                    <p id="statTotalAttempts" class="text-xl font-extrabold text-brand-pinkBright">0</p>
+                </div>
+                <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-100 text-center">
+                    <p class="text-xs text-slate-500 font-semibold">⭐ RATA-RATA SKOR</p>
+                    <p id="statAvgScore" class="text-xl font-extrabold text-emerald-600">0</p>
+                </div>
+                <div class="bg-purple-50 p-3 rounded-xl border border-purple-100 text-center">
+                    <p class="text-xs text-slate-500 font-semibold">🎯 RATA-RATA AKURASI</p>
+                    <p id="statAvgAccuracy" class="text-xl font-extrabold text-purple-600">0%</p>
+                </div>
+            </div>
+
+            <!-- Filter dan Kontrol Tabel -->
+            <div class="bg-sky-50/50 p-4 rounded-2xl border border-sky-100 flex flex-col md:flex-row gap-3 justify-between items-center">
+                <div class="w-full md:w-auto flex flex-col md:flex-row gap-2">
+                    <select id="filterStudentSelect" onchange="filterTeacherTable()" class="p-2.5 rounded-xl border border-sky-300 bg-white text-xs font-semibold text-slate-700 focus:outline-none cursor-pointer">
+                        <option value="ALL">🔍 Pilih Siswa: Semua Siswa</option>
+                    </select>
+                    <select id="sortTeacherSelect" onchange="filterTeacherTable()" class="p-2.5 rounded-xl border border-sky-300 bg-white text-xs font-semibold text-slate-700 focus:outline-none cursor-pointer">
+                        <option value="newest">Urutkan: Terbaru</option>
+                        <option value="oldest">Urutkan: Terlama</option>
+                        <option value="highest">Urutkan: Nilai Tertinggi</option>
+                        <option value="lowest">Urutkan: Nilai Terendah</option>
+                        <option value="az">Urutkan: Nama A–Z</option>
+                    </select>
+                </div>
+                <div class="flex gap-2 w-full md:w-auto justify-end">
+                    <button type="button" onclick="resetTeacherFilters()" class="px-3 py-2 bg-white border border-sky-300 text-brand-blueBright font-bold rounded-xl text-xs hover:bg-sky-50 transition pointer-events-auto">
+                        🔄 TAMPILKAN SEMUA
+                    </button>
+                    <button type="button" onclick="downloadTeacherPDF()" class="px-3 py-2 bg-brand-pinkBright hover:bg-pink-600 text-white font-bold rounded-xl text-xs shadow transition pointer-events-auto flex items-center gap-1">
+                        <span>📄 DOWNLOAD PDF</span>
+                    </button>
+                    <button type="button" onclick="confirmClearTeacherData()" class="px-3 py-2 bg-red-100 hover:bg-red-200 text-red-700 font-bold rounded-xl text-xs transition pointer-events-auto flex items-center gap-1">
+                        <span>🗑 HAPUS DATA</span>
+                    </button>
+                </div>
+            </div>
+
+            <p id="teacherRecordInfo" class="text-xs text-slate-500 font-medium">0 siswa telah mengerjakan</p>
+
+            <!-- Tabel Data Guru Responsive -->
+            <div class="bg-white rounded-2xl border border-sky-100 overflow-hidden shadow-sm max-h-[45vh] overflow-y-auto">
+                <table class="w-full text-left border-collapse text-xs md:text-sm">
+                    <thead>
+                        <tr class="bg-sky-100 text-slate-700 font-bold sticky top-0">
+                            <th class="p-3">No</th>
+                            <th class="p-3">Nama Siswa</th>
+                            <th class="p-3 text-center">Skor</th>
+                            <th class="p-3 text-center">Benar</th>
+                            <th class="p-3 text-center">Salah</th>
+                            <th class="p-3 text-center">Akurasi</th>
+                            <th class="p-3 text-center">Waktu</th>
+                        </tr>
+                    </thead>
+                    <tbody id="teacherTableBody" class="divide-y divide-sky-50">
+                        <tr>
+                            <td colspan="7" class="p-6 text-center text-slate-400 font-medium">Belum ada data rekap nilai siswa.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <!-- ========================================== -->
@@ -185,7 +309,7 @@
             <!-- Kotak Soal -->
             <div class="bg-gradient-to-br from-sky-50/50 to-pink-50/50 p-5 rounded-2xl border-2 border-sky-100 shadow-sm">
                 <h3 id="questionTitle" class="text-lg md:text-xl font-bold text-slate-800 mb-2">
-                    PERTANYAAN 1
+                    PERTANYAAN 01
                 </h3>
                 <p id="questionText" class="text-slate-700 text-base md:text-lg font-medium leading-relaxed">
                     Pertanyaan akan muncul di sini...
@@ -334,6 +458,27 @@
             </div>
         </div>
 
+        <!-- ========================================== -->
+        <!-- MODAL KONFIRMASI HAPUS DATA GURU -->
+        <!-- ========================================== -->
+        <div id="modal-clear-data" class="hidden-screen fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+            <div class="bg-white rounded-3xl p-6 max-w-sm w-full text-center space-y-4 border-4 border-red-200 shadow-2xl">
+                <div class="text-5xl">⚠️</div>
+                <h3 class="text-xl font-extrabold text-slate-800">PERHATIAN</h3>
+                <p class="text-slate-600 text-sm font-medium">
+                    "Semua data hasil siswa akan dihapus dan tidak dapat dikembalikan."
+                </p>
+                <div class="flex gap-2 pt-2">
+                    <button type="button" onclick="closeClearModal()" class="w-1/2 py-3 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold rounded-xl shadow transition pointer-events-auto">
+                        BATAL
+                    </button>
+                    <button type="button" onclick="executeClearTeacherData()" class="w-1/2 py-3 bg-red-500 hover:bg-red-600 text-white font-bold rounded-xl shadow transition pointer-events-auto">
+                        YA, HAPUS DATA
+                    </button>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!-- Custom Alert Notification Overlay -->
@@ -348,9 +493,31 @@
     </div>
 
     <!-- ========================================== -->
-    <!-- JAVASCRIPT GAME LOGIC (30 SOAL LENGKAP) -->
+    <!-- JAVASCRIPT GAME LOGIC (30 SOAL + FITUR GURU) -->
     <!-- ========================================== -->
     <script>
+        // Daftar Nama Siswa Resmi
+        const studentNamesList = [
+            "AFSHEENA KHAIRUNISADRA",
+            "BILQIS UFAIRA WIJAYA",
+            "DAFFA ARYA GHOSSAN",
+            "HANIF ABBAD DINIKA",
+            "JUNAIRAH TAMBUNAN",
+            "KAYLA SYAFIQA PUTRI",
+            "KEYSHA QAIREEN AZZAKA",
+            "M. AMMAR HAFIDZUL FURQON BASED",
+            "M. B. M. AL-RASYID SIREGAR",
+            "M. DZAKA AL HAKIM",
+            "MUHAMMAD QATAR",
+            "NABIL NUR ARAYA",
+            "NAURA AQILA NADHIFA",
+            "NEVAN AHZA ANENDI",
+            "NURUL AZIZAH AL-GASYAWARI",
+            "QEYLA ADZKA NAFIISA",
+            "RAISA NAHDA HASANAH EVVENDI",
+            "VIOLLA TATA BUSANA"
+        ];
+
         // Database TEPAT 30 Soal Berdasarkan Gambar Ulangan Harian IPAS Kelas 6
         const gameQuestions = [
             // LEVEL 1: MENGENAL EKONOMI (Soal 1 - 10)
@@ -625,7 +792,7 @@
                 type: "boolean",
                 question: "Produksi merupakan kegiatan menggunakan barang atau jasa untuk memenuhi kebutuhan hidup.",
                 options: ["Salah", "Benar"],
-                correct: 0, // Salah (Kegiatan menggunakan/menghabiskan barang adalah konsumsi, produksi adalah menghasilkan)
+                correct: 0, // Salah
                 explanation: "Pernyataan tersebut salah karena menggunakan barang/jasa untuk memenuhi kebutuhan adalah konsumsi, sedangkan produksi adalah menghasilkan barang/jasa."
             },
             {
@@ -668,10 +835,27 @@
             score: 0,
             lives: 3,
             hintsLeft: 3,
-            userAnswers: [], // Menyimpan riwayat jawaban untuk review
-            selectedOptions: [], // Untuk pilihan ganda / kompleks / boolean
+            userAnswers: [],
+            selectedOptions: [],
             answeredCurrent: false
         };
+
+        // Inisialisasi awal saat halaman dimuat (populate dropdown filter guru)
+        window.addEventListener("DOMContentLoaded", () => {
+            populateStudentFilterDropdown();
+        });
+
+        function populateStudentFilterDropdown() {
+            const select = document.getElementById("filterStudentSelect");
+            if (!select) return;
+            select.innerHTML = '<option value="ALL">🔍 Pilih Siswa: Semua Siswa</option>';
+            studentNamesList.forEach(name => {
+                const opt = document.createElement("option");
+                opt.value = name;
+                opt.textContent = name;
+                select.appendChild(opt);
+            });
+        }
 
         // Fungsi Transisi Screen Aman
         function transitionScreens(hideId, showId) {
@@ -705,6 +889,207 @@
 
         function closeCustomAlert() {
             document.getElementById("custom-alert").classList.add("hidden-screen");
+        }
+
+        // Handler Mode Guru
+        function openTeacherMode() {
+            document.getElementById("teacherPinInput").value = "";
+            document.getElementById("pinErrorMsg").classList.add("hidden");
+            transitionScreens("screen-welcome", "screen-teacher-pin");
+        }
+
+        function backToWelcomeFromPin() {
+            transitionScreens("screen-teacher-pin", "screen-welcome");
+        }
+
+        function verifyTeacherPIN() {
+            const pin = document.getElementById("teacherPinInput").value;
+            if (pin === "2228") {
+                loadTeacherDashboard();
+                transitionScreens("screen-teacher-pin", "screen-teacher");
+            } else {
+                document.getElementById("pinErrorMsg").classList.remove("hidden");
+            }
+        }
+
+        function backToWelcomeFromTeacher() {
+            transitionScreens("screen-teacher", "screen-welcome");
+        }
+
+        // Load & Render Dashboard Guru
+        function loadTeacherDashboard() {
+            document.getElementById("filterStudentSelect").value = "ALL";
+            document.getElementById("sortTeacherSelect").value = "newest";
+            renderTeacherTableAndStats();
+        }
+
+        function getTeacherResults() {
+            try {
+                const data = localStorage.getItem("ipasekonomi_teacher_results");
+                return data ? JSON.parse(data) : [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        // Helper sesuai rekomendasi untuk filter + sorting
+        function getFilteredAndSortedResults() {
+            let results = getTeacherResults();
+
+            const filterName = document.getElementById("filterStudentSelect").value;
+            const sortBy = document.getElementById("sortTeacherSelect").value;
+
+            if (filterName !== "ALL") {
+                results = results.filter(r => r.name === filterName);
+            }
+
+            results.sort((a, b) => {
+                if (sortBy === "newest") return b.timestamp - a.timestamp;
+                if (sortBy === "oldest") return a.timestamp - b.timestamp;
+                if (sortBy === "highest") return b.score - a.score;
+                if (sortBy === "lowest") return a.score - b.score;
+                if (sortBy === "az") return a.name.localeCompare(b.name);
+                return 0;
+            });
+
+            return results;
+        }
+
+        function renderTeacherTableAndStats() {
+            let results = getFilteredAndSortedResults();
+
+            // Statistik Global (berdasarkan seluruh data localStorage untuk kartu total/keseluruhan)
+            const allResults = getTeacherResults();
+            const uniqueStudentsCount = new Set(allResults.map(r => r.name)).size;
+            const totalAttemptsCount = allResults.length;
+            
+            let avgScore = 0;
+            let avgAccuracy = 0;
+            if (totalAttemptsCount > 0) {
+                const totalScoreSum = allResults.reduce((acc, curr) => acc + curr.score, 0);
+                const totalAccuracySum = allResults.reduce((acc, curr) => acc + curr.accuracy, 0);
+                avgScore = Math.round(totalScoreSum / totalAttemptsCount);
+                avgAccuracy = Math.round(totalAccuracySum / totalAttemptsCount);
+            }
+
+            document.getElementById("statTotalStudents").textContent = uniqueStudentsCount;
+            document.getElementById("statTotalAttempts").textContent = totalAttemptsCount;
+            document.getElementById("statAvgScore").textContent = avgScore;
+            document.getElementById("statAvgAccuracy").textContent = `${avgAccuracy}%`;
+            document.getElementById("teacherRecordInfo").textContent = `${results.length} data rekap ditampilkan`;
+
+            // Render Tabel
+            const tbody = document.getElementById("teacherTableBody");
+            tbody.innerHTML = "";
+
+            if (results.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" class="p-6 text-center text-slate-400 font-medium">Belum ada data rekap nilai siswa.</td></tr>`;
+                return;
+            }
+
+            results.forEach((res, idx) => {
+                const tr = document.createElement("tr");
+                tr.className = "hover:bg-sky-50/50 transition";
+                tr.innerHTML = `
+                    <td class="p-3 font-semibold text-slate-500">${idx + 1}</td>
+                    <td class="p-3 font-bold text-slate-800">${res.name}</td>
+                    <td class="p-3 text-center font-extrabold text-brand-blueBright">${res.score}</td>
+                    <td class="p-3 text-center font-semibold text-emerald-600">${res.correct}</td>
+                    <td class="p-3 text-center font-semibold text-red-500">${res.wrong}</td>
+                    <td class="p-3 text-center font-bold text-purple-600">${res.accuracy}%</td>
+                    <td class="p-3 text-center text-slate-500">${res.date}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function filterTeacherTable() {
+            renderTeacherTableAndStats();
+        }
+
+        function resetTeacherFilters() {
+            document.getElementById("filterStudentSelect").value = "ALL";
+            document.getElementById("sortTeacherSelect").value = "newest";
+            renderTeacherTableAndStats();
+        }
+
+        // Hapus Data Guru
+        function confirmClearTeacherData() {
+            document.getElementById("modal-clear-data").classList.remove("hidden-screen");
+        }
+
+        function closeClearModal() {
+            document.getElementById("modal-clear-data").classList.add("hidden-screen");
+        }
+
+        function executeClearTeacherData() {
+            localStorage.removeItem("ipasekonomi_teacher_results");
+            closeClearModal();
+            renderTeacherTableAndStats();
+            showCustomAlert("Semua data rekap berhasil dihapus.");
+        }
+
+        // Download PDF Rekap Guru Menggunakan jsPDF & AutoTable (Mengikuti Filter, Sorting & Statistik Terfilter)
+        function downloadTeacherPDF() {
+            const results = getFilteredAndSortedResults();
+            if (results.length === 0) {
+                showCustomAlert("Belum ada data rekap untuk diunduh sesuai filter.");
+                return;
+            }
+
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF('p', 'mm', 'a4');
+
+            // Header Laporan
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(14);
+            doc.text("ULANGAN HARIAN", 105, 15, { align: "center" });
+            doc.text("ILMU PENGETAHUAN ALAM DAN SOSIAL (IPAS)", 105, 22, { align: "center" });
+            doc.setFontSize(11);
+            doc.text("KELAS 6 - KEGIATAN EKONOMI DAN EKONOMI KREATIF", 105, 29, { align: "center" });
+
+            doc.setLineWidth(0.5);
+            doc.line(14, 34, 196, 34);
+
+            doc.setFontSize(12);
+            doc.text("REKAP HASIL BELAJAR SISWA", 14, 42);
+
+            // Statistik ringkas di PDF (mengikuti dataset hasil filter)
+            const totalStudents = new Set(results.map(r => r.name)).size;
+            const totalAttempts = results.length;
+            const avgScore = totalAttempts > 0 ? Math.round(results.reduce((a, b) => a + b.score, 0) / totalAttempts) : 0;
+            const avgAcc = totalAttempts > 0 ? Math.round(results.reduce((a, b) => a + b.accuracy, 0) / totalAttempts) : 0;
+
+            doc.setFontSize(10);
+            doc.setFont("helvetica", "normal");
+            doc.text(`Total Siswa: ${totalStudents}  |  Total Percobaan: ${totalAttempts}  |  Rata-rata Skor: ${avgScore}  |  Rata-rata Akurasi: ${avgAcc}%`, 14, 49);
+            doc.text(`Tanggal Cetak: ${new Date().toLocaleDateString('id-ID')}`, 14, 55);
+
+            // Tabel Data AutoTable (mengikuti urutan sorting yang aktif)
+            let tableData = results.map((r, i) => [
+                i + 1,
+                r.name,
+                r.score,
+                r.correct,
+                r.wrong,
+                r.accuracy + "%",
+                r.date
+            ]);
+
+            doc.autoTable({
+                startY: 60,
+                head: [['No.', 'Nama Siswa', 'Skor', 'Benar', 'Salah', 'Akurasi', 'Tanggal']],
+                body: tableData,
+                theme: 'grid',
+                headStyles: { fillColor: [2, 132, 199] },
+                styles: { fontSize: 9, cellPadding: 3 },
+                didDrawPage: function (data) {
+                    doc.setFontSize(8);
+                    doc.text("Dicetak dari Game Edukasi IPAS Kelas 6", 14, doc.internal.pageSize.height - 10);
+                }
+            });
+
+            doc.save("Rekap_Nilai_IPAS_Kelas_6.pdf");
         }
 
         // Handler Mulai Game dari Halaman Awal
@@ -776,14 +1161,12 @@
             document.getElementById("hudQuestionNum").textContent = `Soal ${gameState.currentQuestionIndex + 1}/${gameQuestions.length}`;
             document.getElementById("hintsCount").textContent = gameState.hintsLeft;
             
-            // Render nyawa hati
             let hearts = "";
             for (let i = 0; i < 3; i++) {
                 hearts += (i < gameState.lives) ? "❤️" : "🤍";
             }
             document.getElementById("hudLives").textContent = hearts;
 
-            // Progress bar
             const total = gameQuestions.length;
             const current = gameState.currentQuestionIndex + 1;
             const pct = Math.round((current / total) * 100);
@@ -809,7 +1192,6 @@
                 complexNote.classList.add("hidden-screen");
             }
 
-            // Render Pilihan Jawaban
             const container = document.getElementById("optionsContainer");
             container.innerHTML = "";
 
@@ -827,7 +1209,6 @@
                 container.appendChild(btn);
             });
 
-            // Reset Tombol & Feedback
             document.getElementById("quizActionContainer").classList.remove("hidden-screen");
             document.getElementById("submitAnswerBtn").textContent = "PERIKSA JAWABAN";
             document.getElementById("feedbackContainer").classList.add("hidden-screen");
@@ -849,7 +1230,6 @@
                 target.classList.add("border-brand-pinkBright", "bg-pink-50");
                 gameState.selectedOptions = [idx];
             } else {
-                // Kompleks (bisa banyak)
                 const target = buttons[idx];
                 const pos = gameState.selectedOptions.indexOf(idx);
                 if (pos > -1) {
@@ -884,14 +1264,16 @@
             if (q.type === "single" || q.type === "boolean") {
                 isCorrect = (gameState.selectedOptions[0] === q.correct);
             } else {
-                // Cek array kompleks
                 const userArr = [...gameState.selectedOptions].sort();
                 const correctArr = [...q.correct].sort();
                 isCorrect = (userArr.length === correctArr.length && userArr.every((val, i) => val === correctArr[i]));
             }
 
-            // Simpan riwayat jawaban untuk review
-            gameState.userAnswers.push({
+            // PERBAIKAN LOGIKA PENCATATAN: Cegah duplikasi record jika soal sudah pernah dijawab (misal saat alur retry)
+            const existingIndex = gameState.userAnswers.findIndex(a => a.id === q.id);
+            const answerRecord = {
+                id: q.id,
+                level: q.level,
                 question: q.question,
                 type: q.type,
                 options: q.options,
@@ -899,9 +1281,14 @@
                 correctAnswer: (q.type === "single" || q.type === "boolean") ? [q.correct] : q.correct,
                 isCorrect: isCorrect,
                 explanation: q.explanation,
-                tag: q.tag,
-                id: q.id
-            });
+                tag: q.tag
+            };
+
+            if (existingIndex > -1) {
+                gameState.userAnswers[existingIndex] = answerRecord;
+            } else {
+                gameState.userAnswers.push(answerRecord);
+            }
 
             const feedbackContainer = document.getElementById("feedbackContainer");
             const feedbackTitleText = document.getElementById("feedbackTitleText");
@@ -910,7 +1297,6 @@
             feedbackContainer.classList.remove("hidden-screen");
 
             if (isCorrect) {
-                gameState.score += 100;
                 feedbackContainer.className = "p-4 rounded-2xl border-2 border-emerald-300 bg-emerald-50 space-y-2 animate-bounce-short";
                 feedbackTitleText.textContent = "BENAR! Hebat!";
                 feedbackContainer.querySelector("div span").textContent = "🎉";
@@ -933,9 +1319,10 @@
                 feedbackExplanation.innerHTML = `<strong>${correctText}</strong><br><br>${q.explanation}`;
             }
 
+            // Hitung ulang skor global berdasarkan seluruh jawaban benar yang tersimpan di userAnswers
+            recalculateScoreFromAnswers();
             updateHUD();
 
-            // Cek nyawa habis
             if (gameState.lives <= 0) {
                 setTimeout(() => {
                     document.getElementById("modal-out-of-lives").classList.remove("hidden-screen");
@@ -943,14 +1330,16 @@
             }
         }
 
+        // Fungsi bantu hitung ulang skor dari jawaban valid
+        function recalculateScoreFromAnswers() {
+            const correctTotal = gameState.userAnswers.filter(a => a.isCorrect).length;
+            gameState.score = correctTotal * 100;
+        }
+
         // Lanjut ke Soal Berikutnya
         function nextQuestion() {
             gameState.currentQuestionIndex++;
 
-            // Cek perpindahan level otomatis berdasarkan indeks soal (30 soal total)
-            // Level 1: Indeks 0 - 9 (Soal 1 - 10)
-            // Level 2: Indeks 10 - 19 (Soal 11 - 20)
-            // Level 3: Indeks 20 - 29 (Soal 21 - 30)
             if (gameState.currentQuestionIndex === 10 && gameState.currentLevel === 1) {
                 showLevelCompletionScreen(1);
                 return;
@@ -974,7 +1363,6 @@
             transitionScreens("screen-quiz", "screen-level-complete");
         }
 
-        // Lanjut ke Level Berikutnya setelah layar level selesai
         function proceedToNextLevel() {
             const nextLvl = gameState.currentLevel + 1;
             showLevelIntro(nextLvl);
@@ -1005,35 +1393,66 @@
             showCustomAlert(`Petunjuk: ${q.explanation.substring(0, 90)}...`);
         }
 
-        // Opsi Nyawa Habis: Coba Lagi Level
+        // PERBAIKAN LOGIKA RETRY LEVEL
         function retryCurrentLevel() {
             document.getElementById("modal-out-of-lives").classList.add("hidden-screen");
             gameState.lives = 3;
-            // Kembalikan ke awal level saat ini
-            if (gameState.currentLevel === 1) gameState.currentQuestionIndex = 0;
-            else if (gameState.currentLevel === 2) gameState.currentQuestionIndex = 10;
-            else if (gameState.currentLevel === 3) gameState.currentQuestionIndex = 20;
+
+            // Hapus semua userAnswers dari level yang sedang diulang saja
+            gameState.userAnswers = gameState.userAnswers.filter(ans => ans.level !== gameState.currentLevel);
+
+            // Setel ulang posisi soal ke awal level tersebut
+            if (gameState.currentLevel === 1) {
+                gameState.currentQuestionIndex = 0;
+            } else if (gameState.currentLevel === 2) {
+                gameState.currentQuestionIndex = 10;
+            } else if (gameState.currentLevel === 3) {
+                gameState.currentQuestionIndex = 20;
+            }
+
+            // Hitung ulang skor berdasarkan jawaban level sebelumnya yang masih tersimpan
+            recalculateScoreFromAnswers();
 
             document.getElementById("game-hud").classList.remove("hidden-screen");
             transitionScreens("screen-quiz", "screen-quiz");
             loadQuestion();
         }
 
-        // Opsi Nyawa Habis: Lanjut Bermain
+        // LOGIKA "LANJUT BERMAIN"
         function continuePlayingAfterLives() {
             document.getElementById("modal-out-of-lives").classList.add("hidden-screen");
-            gameState.lives = 1; // Berikan 1 nyawa darurat
+            gameState.lives = 1;
             document.getElementById("game-hud").classList.remove("hidden-screen");
             nextQuestion();
         }
 
-        // Tampilkan Halaman Hasil Akhir
+        // Tampilkan Halaman Hasil Akhir & Validasi Ketat 30 Soal
         function showResultScreen() {
             document.getElementById("game-hud").classList.add("hidden-screen");
 
+            // VALIDASI HASIL AKHIR: Pastikan userAnswers lengkap berjumlah tepat 30
+            if (gameState.userAnswers.length !== gameQuestions.length) {
+                showCustomAlert("Perhatian: Permainan belum memiliki 30 jawaban lengkap. Silakan selesaikan seluruh soal.");
+                // Kembalikan ke soal terakhir yang belum terjawab jika kurang
+                gameState.currentQuestionIndex = gameState.userAnswers.length;
+                if (gameState.currentQuestionIndex >= gameQuestions.length) gameState.currentQuestionIndex = gameQuestions.length - 1;
+                document.getElementById("game-hud").classList.remove("hidden-screen");
+                transitionScreens("screen-result", "screen-quiz");
+                loadQuestion();
+                return;
+            }
+
             let correctCount = gameState.userAnswers.filter(a => a.isCorrect).length;
             let wrongCount = gameState.userAnswers.length - correctCount;
+
+            // Validasi tambahan: correctCount + wrongCount harus sama dengan 30
+            if (correctCount + wrongCount !== gameQuestions.length) {
+                showCustomAlert("Validasi data jawaban gagal. Terdeteksi anomali perhitungan benar/salah.");
+                return;
+            }
+
             let accuracy = Math.round((correctCount / gameQuestions.length) * 100);
+            gameState.score = correctCount * 100; // Pastikan skor sesuai jumlah benar × 100
 
             document.getElementById("finalScore").textContent = gameState.score;
             document.getElementById("finalCorrect").textContent = correctCount;
@@ -1051,8 +1470,29 @@
                 badge.textContent = "🌱 TERUS BERLATIH!";
             }
 
+            // SIMPAN OTOMATIS HASIL KE LOCALSTORAGE
+            saveStudentResult(correctCount, wrongCount, accuracy);
+
             transitionScreens("screen-quiz", "screen-result");
             confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+        }
+
+        function saveStudentResult(correctCount, wrongCount, accuracy) {
+            const now = new Date();
+            
+            const newRecord = {
+                name: gameState.playerName,
+                score: gameState.score,
+                correct: correctCount,
+                wrong: wrongCount,
+                accuracy: accuracy,
+                date: now.toLocaleDateString('id-ID', { day: '2-digit', month: 'long', year: 'numeric' }),
+                timestamp: now.getTime()
+            };
+
+            let results = getTeacherResults();
+            results.push(newRecord);
+            localStorage.setItem("ipasekonomi_teacher_results", JSON.stringify(results));
         }
 
         // Halaman Pembahasan
@@ -1060,7 +1500,10 @@
             const container = document.getElementById("reviewListContainer");
             container.innerHTML = "";
 
-            gameState.userAnswers.forEach((ans) => {
+            // Urutkan review berdasarkan id soal agar berurutan 1-30
+            const sortedAnswers = [...gameState.userAnswers].sort((a, b) => a.id - b.id);
+
+            sortedAnswers.forEach((ans) => {
                 let userStr = "";
                 let correctStr = "";
 
