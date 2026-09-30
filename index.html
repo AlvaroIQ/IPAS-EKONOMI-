@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECONOMY QUEST 🚀 - Petualangan Seru IPAS Kelas 6</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blueLight: '#E0F2FE',
+                            blueBright: '#0284C7',
+                            blueDark: '#0369A1',
+                            pinkPastel: '#FCE7F3',
+                            pinkBright: '#EC4899',
+                            pinkDark: '#BE185D',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #E0F2FE 0%, #FCE7F3 100%);
+            min-height: 100vh;
+        }
+        .hidden-screen {
+            display: none !important;
+        }
+        @keyframes bounce-short {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        .animate-bounce-short {
+            animation: bounce-short 1.5s infinite;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+        .animate-shake {
+            animation: shake 0.4s ease-in-out;
+        }
+    </style>
+</head>
+<body class="text-slate-700 flex flex-col items-center justify-center p-4">
+
+    <!-- Container Utama Game -->
+    <div id="game-container" class="w-full max-w-2xl bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl p-6 md:p-8 border-4 border-pink-200 relative overflow-hidden transition-all duration-300">
+
+        <!-- ========================================== -->
+        <!-- HALAMAN 1: WELCOME SCREEN & PILIH NAMA -->
+        <!-- ========================================== -->
+        <div id="screen-welcome" class="space-y-6 text-center">
+            <!-- Logo Sekolah -->
+            <div class="flex justify-center mb-2">
+                <img src="https://i.ibb.co.com/rRr2pL4m/Whats-App-Image-2026-07-24-at-9-16-22-PM.jpg" alt="Logo Sekolah" class="w-24 h-24 object-cover rounded-full shadow-md border-4 border-sky-300 animate-bounce-short">
+            </div>
+
+            <div class="inline-block bg-sky-100 text-brand-blueBright text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-wider mb-1">
+                🎮 GAME EDUKASI IPAS KELAS 6
+            </div>
+
+            <h1 class="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-brand-blueBright to-brand-pinkBright">
+                IPAS | EKONOMI 🚀
+            </h1>
+            <p class="text-slate-500 font-medium -mt-2">"Petualangan Seru Mengenal Kegiatan Ekonomi"</p>
+
+            <div class="bg-gradient-to-br from-sky-50 to-pink-50 p-6 rounded-2xl border-2 border-sky-100 space-y-4 shadow-inner max-w-md mx-auto">
+                <label for="playerNameSelect" class="block font-bold text-slate-700 text-lg">
+                    👋 SIAPA YANG AKAN BERMAIN?
+                </label>
+                <p class="text-xs text-slate-500 -mt-2">"Pilih namamu untuk memulai petualangan!"</p>
+
+                <select id="playerNameSelect" class="w-full p-4 rounded-xl border-2 border-pink-300 focus:border-brand-pinkBright focus:outline-none bg-white font-semibold text-slate-700 shadow-sm cursor-pointer pointer-events-auto">
+                    <option value="">— Pilih Nama —</option>
+                    <option value="AFSHEENA KHAIRUNISADRA">AFSHEENA KHAIRUNISADRA</option>
+                    <option value="BILQIS UFAIRA WIJAYA">BILQIS UFAIRA WIJAYA</option>
+                    <option value="DAFFA ARYA GHOSSAN">DAFFA ARYA GHOSSAN</option>
+                    <option value="HANIF ABBAD DINIKA">HANIF ABBAD DINIKA</option>
+                    <option value="JUNAIRAH TAMBUNAN">JUNAIRAH TAMBUNAN</option>
+                    <option value="KAYLA SYAFIQA PUTRI">KAYLA SYAFIQA PUTRI</option>
+                    <option value="KEYSHA QAIREEN AZZAKA">KEYSHA QAIREEN AZZAKA</option>
+                    <option value="M. AMMAR HAFIDZUL FURQON BASED">M. AMMAR HAFIDZUL FURQON BASED</option>
+                    <option value="M. B. M. AL-RASYID SIREGAR">M. B. M. AL-RASYID SIREGAR</option>
+                    <option value="M. DZAKA AL HAKIM">M. DZAKA AL HAKIM</option>
+                    <option value="MUHAMMAD QATAR">MUHAMMAD QATAR</option>
+                    <option value="NABIL NUR ARAYA">NABIL NUR ARAYA</option>
+                    <option value="NAURA AQILA NADHIFA">NAURA AQILA NADHIFA</option>
+                    <option value="NEVAN AHZA ANENDI">NEVAN AHZA ANENDI</option>
+                    <option value="NURUL AZIZAH AL-GASYAWARI">NURUL AZIZAH AL-GASYAWARI</option>
+                    <option value="QEYLA ADZKA NAFIISA">QEYLA ADZKA NAFIISA</option>
+                    <option value="RAISA NAHDA HASANAH EVVENDI">RAISA NAHDA HASANAH EVVENDI</option>
+                    <option value="VIOLLA TATA BUSANA">VIOLLA TATA BUSANA</option>
+                </select>
+
+                <button type="button" onclick="handleStartGame()" class="w-full py-4 bg-gradient-to-r from-brand-pinkBright to-pink-500 hover:from-pink-600 hover:to-brand-pinkDark text-white font-bold rounded-xl shadow-lg transition transform hover:-translate-y-0.5 active:translate-y-0 pointer-events-auto text-lg flex items-center justify-center gap-2">
+                    <span>▶ MULAI BERMAIN</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- HALAMAN 2: GREETING SCREEN -->
+        <!-- ========================================== -->
+        <div id="screen-greeting" class="hidden-screen space-y-6 text-center py-8">
+            <div class="text-6xl animate-bounce">🌟</div>
+            <h2 id="greetingTitle" class="text-2xl md:text-3xl font-extrabold text-slate-800">
+                Hai, [Nama]!
+            </h2>
+            <p class="text-lg text-slate-600 font-medium">"Siap menjelajahi dunia ekonomi?"</p>
+            <div class="pt-4">
+                <button type="button" onclick="beginAdventure()" class="px-8 py-4 bg-gradient-to-r from-brand-blueBright to-sky-600 hover:from-sky-600 hover:to-brand-blueDark text-white font-bold rounded-2xl shadow-lg transition transform hover:-translate-y-0.5 pointer-events-auto text-lg flex items-center justify-center gap-2 mx-auto">
+                    <span>🚀 MULAI PETUALANGAN</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- HALAMAN 3: LEVEL INTRO SCREEN -->
+        <!-- ========================================== -->
+        <div id="screen-level-intro" class="hidden-screen space-y-6 text-center py-6">
+            <div id="levelBadge" class="inline-block bg-sky-100 text-brand-blueBright font-bold px-6 py-2 rounded-full text-sm uppercase tracking-wider">
+                🌱 LEVEL 1
+            </div>
+            <h2 id="levelTitle" class="text-2xl md:text-3xl font-extrabold text-slate-800">
+                MENGENAL EKONOMI
+            </h2>
+            <p id="levelDesc" class="text-slate-600 max-w-md mx-auto font-medium">
+                Soal mudah tentang kegiatan ekonomi dan keberagaman ekonomi masyarakat.
+            </p>
+            <div class="pt-6">
+                <button type="button" onclick="startCurrentLevelQuestions()" class="px-8 py-4 bg-gradient-to-r from-brand-pinkBright to-pink-500 hover:from-pink-600 text-white font-bold rounded-2xl shadow-lg transition transform hover:-translate-y-0.5 pointer-events-auto text-lg flex items-center justify-center gap-2 mx-auto">
+                    <span>➡️ LANJUT KE SOAL</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- HUD / HEADER GAMEPLAY -->
+        <!-- ========================================== -->
+        <div id="game-hud" class="hidden-screen space-y-4">
+            <div class="flex flex-wrap items-center justify-between bg-sky-50 p-3 rounded-2xl border border-sky-100 text-sm font-semibold">
+                <div class="flex items-center gap-2">
+                    <span>👤 <span id="hudName" class="text-brand-blueBright font-bold">Nama</span></span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span>⭐ Skor: <span id="hudScore" class="text-brand-pinkBright font-bold">0</span></span>
+                    <span>📍 <span id="hudQuestionNum">Soal 1/21</span></span>
+                    <span id="hudLives" class="text-red-500">❤️❤️❤️</span>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                <div id="progressBar" class="bg-gradient-to-r from-brand-blueBright to-brand-pinkBright h-3 rounded-full transition-all duration-300" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- HALAMAN 4: QUIZ SCREEN -->
+        <!-- ========================================== -->
+        <div id="screen-quiz" class="hidden-screen space-y-6 pt-2">
+            <!-- Tombol Bantuan Petunjuk -->
+            <div class="flex justify-between items-center">
+                <span id="questionTag" class="text-xs font-bold uppercase tracking-wider bg-pink-100 text-brand-pinkBright px-3 py-1 rounded-full">
+                    Materi IPAS
+                </span>
+                <button type="button" onclick="useHint()" id="hintBtn" class="text-xs font-bold bg-amber-100 hover:bg-amber-200 text-amber-700 px-3 py-1.5 rounded-full transition pointer-events-auto flex items-center gap-1">
+                    💡 PETUNJUK (<span id="hintsCount">3</span>)
+                </button>
+            </div>
+
+            <!-- Kotak Soal -->
+            <div class="bg-gradient-to-br from-sky-50/50 to-pink-50/50 p-5 rounded-2xl border-2 border-sky-100 shadow-sm">
+                <h3 id="questionTitle" class="text-lg md:text-xl font-bold text-slate-800 mb-2">
+                    PERTANYAAN 01
+                </h3>
+                <p id="questionText" class="text-slate-700 text-base md:text-lg font-medium leading-relaxed">
+                    Pertanyaan akan muncul di sini...
+                </p>
+                <p id="complexNote" class="text-xs text-brand-pinkBright font-bold mt-2 hidden">
+                    ☑️ Pilih semua jawaban yang benar!
+                </p>
+            </div>
+
+            <!-- Pilihan Jawaban -->
+            <div id="optionsContainer" class="space-y-3">
+                <!-- Opsi akan dirender via JS -->
+            </div>
+
+            <!-- Tombol Aksi Kuis -->
+            <div id="quizActionContainer" class="pt-2">
+                <button type="button" id="submitAnswerBtn" onclick="submitAnswer()" class="w-full py-3.5 bg-gradient-to-r from-brand-blueBright to-sky-600 hover:from-sky-600 text-white font-bold rounded-xl shadow-lg transition transform hover:-translate-y-0.5 pointer-events-auto text-base">
+                    PERIKSA JAWABAN
+                </button>
+            </div>
+
+            <!-- Kotak Feedback / Penjelasan -->
+            <div id="feedbackContainer" class="hidden p-4 rounded-2xl border-2 space-y-2">
+                <div id="feedbackHeader" class="font-bold text-lg flex items-center gap-2">
+                    <span>🎉</span> <span id="feedbackTitleText">BENAR! Hebat!</span>
+                </div>
+                <p id="feedbackExplanation" class="text-sm text-slate-600 leading-relaxed">
+                    Penjelasan akan tampil di sini.
+                </p>
+                <div class="pt-2">
+                    <button type="button" onclick="nextQuestion()" class="w-full py-3 bg-gradient-to-r from-brand-pinkBright to-pink-500 hover:from-pink-600 text-white font-bold rounded-xl shadow-md transition pointer-events-auto">
+                        ➡️ LANJUT
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- HALAMAN 5: LEVEL COMPLETED SCREEN -->
+        <!-- ========================================== -->
+        <div id="screen-level-complete" class="hidden-screen space-y-6 text-center py-8">
+            <div class="text-6xl animate-bounce">🎉</div>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800">
+                LEVEL SELESAI!
+            </h2>
+            <p id="levelCompleteMessage" class="text-slate-600 font-medium">
+                Hebat, [Nama]! Kamu berhasil melewati level ini.
+            </p>
+            <div class="bg-sky-50 p-4 rounded-xl border border-sky-100 max-w-xs mx-auto">
+                <p class="text-sm text-slate-500 font-semibold">Skor Sementara:</p>
+                <p id="levelCompleteScore" class="text-3xl font-extrabold text-brand-pinkBright">0</p>
+            </div>
+            <div class="pt-4">
+                <button type="button" onclick="proceedToNextLevel()" class="px-8 py-4 bg-gradient-to-r from-brand-blueBright to-sky-600 hover:from-sky-600 text-white font-bold rounded-2xl shadow-lg transition transform hover:-translate-y-0.5 pointer-events-auto text-lg flex items-center justify-center gap-2 mx-auto">
+                    <span>➡️ LANJUT KE LEVEL BERIKUTNYA</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- HALAMAN 6: RESULT SCREEN -->
+        <!-- ========================================== -->
+        <div id="screen-result" class="hidden-screen space-y-6 text-center py-4">
+            <div class="text-5xl">🏆</div>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-slate-800">
+                PETUALANGAN SELESAI!
+            </h2>
+            <p id="resultPlayerGreeting" class="text-lg text-slate-600 font-bold">
+                Hai, [Nama]!
+            </p>
+
+            <div id="achievementBadge" class="inline-block bg-pink-100 text-brand-pinkBright font-extrabold px-6 py-2 rounded-full text-sm uppercase tracking-wider shadow-sm">
+                🏆 AHLI EKONOMI KREATIF!
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-md mx-auto">
+                <div class="bg-sky-50 p-3 rounded-xl border border-sky-100">
+                    <p class="text-xs text-slate-500 font-semibold">Skor</p>
+                    <p id="finalScore" class="text-xl font-extrabold text-brand-blueBright">0</p>
+                </div>
+                <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-100">
+                    <p class="text-xs text-slate-500 font-semibold">Benar</p>
+                    <p id="finalCorrect" class="text-xl font-extrabold text-emerald-600">0</p>
+                </div>
+                <div class="bg-red-50 p-3 rounded-xl border border-red-100">
+                    <p class="text-xs text-slate-500 font-semibold">Salah</p>
+                    <p id="finalWrong" class="text-xl font-extrabold text-red-500">0</p>
+                </div>
+                <div class="bg-purple-50 p-3 rounded-xl border border-purple-100">
+                    <p class="text-xs text-slate-500 font-semibold">Akurasi</p>
+                    <p id="finalAccuracy" class="text-xl font-extrabold text-purple-600">0%</p>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-3 pt-2">
+                <button type="button" onclick="restartGame()" class="px-6 py-3 bg-brand-blueBright hover:bg-brand-blueDark text-white font-bold rounded-xl shadow transition pointer-events-auto flex items-center gap-2">
+                    🔄 MAIN LAGI
+                </button>
+                <button type="button" onclick="showReviewScreen()" class="px-6 py-3 bg-amber-500 hover:bg-amber-600 text-white font-bold rounded-xl shadow transition pointer-events-auto flex items-center gap-2">
+                    📚 LIHAT PEMBAHASAN
+                </button>
+                <button type="button" onclick="backToMenu()" class="px-6 py-3 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold rounded-xl shadow transition pointer-events-auto flex items-center gap-2">
+                    🏠 KEMBALI KE MENU
+                </button>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- HALAMAN 7: REVIEW SCREEN -->
+        <!-- ========================================== -->
+        <div id="screen-review" class="hidden-screen space-y-6">
+            <div class="text-center">
+                <h2 class="text-2xl font-extrabold text-slate-800">📚 PEMBAHASAN SOAL</h2>
+                <p class="text-sm text-slate-500 font-medium">Pelajari kembali jawaban dan penjelasan berikut.</p>
+            </div>
+
+            <div id="reviewListContainer" class="space-y-4 max-h-[60vh] overflow-y-auto pr-2">
+                <!-- Item review dirender via JS -->
+            </div>
+
+            <div class="text-center pt-2">
+                <button type="button" onclick="backToResult()" class="px-8 py-3 bg-brand-blueBright hover:bg-brand-blueDark text-white font-bold rounded-xl shadow transition pointer-events-auto">
+                    ⬅️ KEMBALI KE HASIL
+                </button>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- MODAL NYAWA HABIS -->
+        <!-- ========================================== -->
+        <div id="modal-out-of-lives" class="hidden-screen fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+            <div class="bg-white rounded-3xl p-6 md:p-8 max-w-sm w-full text-center space-y-4 border-4 border-pink-200 shadow-2xl">
+                <div class="text-5xl">❤️💔</div>
+                <h3 class="text-xl font-extrabold text-slate-800">Nyawamu Habis!</h3>
+                <p class="text-slate-600 text-sm font-medium">
+                    "Nyawamu habis, tetapi kamu masih bisa melanjutkan petualangan!"
+                </p>
+                <div class="flex flex-col gap-2 pt-2">
+                    <button type="button" onclick="retryCurrentLevel()" class="w-full py-3 bg-brand-blueBright hover:bg-brand-blueDark text-white font-bold rounded-xl shadow transition pointer-events-auto">
+                        🔄 Coba Lagi Level Ini
+                    </button>
+                    <button type="button" onclick="continuePlayingAfterLives()" class="w-full py-3 bg-brand-pinkBright hover:bg-pink-600 text-white font-bold rounded-xl shadow transition pointer-events-auto">
+                        ➡️ Lanjut Bermain
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Custom Alert Notification Overlay -->
+    <div id="custom-alert" class="hidden-screen fixed inset-0 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-2xl p-6 max-w-xs w-full text-center space-y-4 shadow-xl border-2 border-sky-100">
+            <div class="text-4xl">😊</div>
+            <p id="customAlertText" class="text-slate-700 font-bold text-sm">Pesan alert...</p>
+            <button type="button" onclick="closeCustomAlert()" class="w-full py-2.5 bg-brand-blueBright text-white font-bold rounded-xl shadow pointer-events-auto">
+                OK
+            </button>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- JAVASCRIPT GAME LOGIC -->
+    <!-- ========================================== -->
+    <script>
+        // Database 21 Soal IPAS Kelas 6 Berdasarkan Materi
+        const gameQuestions = [
+            // LEVEL 1: MENGENAL EKONOMI (Soal 1 - 7)
+            {
+                level: 1,
+                tag: "A. Keberagaman Ekonomi",
+                type: "single",
+                question: "Seorang petani menanam sayuran untuk dijual kepada masyarakat. Kegiatan tersebut termasuk bentuk ...",
+                options: ["Keberagaman ekonomi", "Kecelakaan kerja", "Bencana alam", "Pariwisata"],
+                correct: 0,
+                explanation: "Keberagaman ekonomi masyarakat terlihat dari berbagai bidang usaha yang ditekuni, seperti pertanian, perdagangan, dan jasa."
+            },
+            {
+                level: 1,
+                tag: "B. Faktor Keberagaman Ekonomi",
+                type: "single",
+                question: "Faktor utama yang menyebabkan perbedaan mata pencaharian antara masyarakat di daerah pegunungan dan pantai adalah ...",
+                options: ["Jumlah penduduk", "Sumber daya alam dan kondisi geografis", "Warna pakaian", "Jenis kendaraan"],
+                correct: 1,
+                explanation: "Kondisi geografis dan ketersediaan sumber daya alam sangat memengaruhi jenis mata pencaharian penduduk di suatu daerah."
+            },
+            {
+                level: 1,
+                tag: "C. Sumber Daya Alam",
+                type: "single",
+                question: "Masyarakat di daerah pesisir pantai umumnya banyak yang bekerja sebagai nelayan karena ketersediaan ...",
+                options: ["Tanah yang kering", "Sumber daya laut yang melimpah", "Pabrik tekstil modern", "Gedung bertingkat"],
+                correct: 1,
+                explanation: "Sumber daya alam laut di daerah pesisir dimanfaatkan oleh masyarakat untuk bekerja sebagai nelayan atau petani tambak."
+            },
+            {
+                level: 1,
+                tag: "D. Keterampilan & Pendidikan",
+                type: "single",
+                question: "Keterampilan dan tingkat pendidikan seseorang dapat memengaruhi ...",
+                options: ["Jenis pekerjaan dan pendapatan ekonomi", "Tinggi badan seseorang", "Jumlah saudara kandung", "Warna rambut"],
+                correct: 0,
+                explanation: "Keterampilan dan pendidikan yang tinggi membantu seseorang mendapatkan pekerjaan yang lebih baik serta meningkatkan taraf ekonomi."
+            },
+            {
+                level: 1,
+                tag: "E. Teknologi",
+                type: "single",
+                question: "Penggunaan alat dan mesin modern dalam mengolah hasil bumi bertujuan untuk ...",
+                options: ["Memperlama waktu kerja", "Membuat pekerjaan semakin sulit", "Meningkatkan efisiensi dan hasil produksi", "Menghabiskan biaya"],
+                correct: 2,
+                explanation: "Teknologi modern dapat membantu meningkatkan efisiensi, kecepatan, dan jumlah hasil produksi."
+            },
+            {
+                level: 1,
+                tag: "F. Modal",
+                type: "single",
+                question: "Dalam memulai suatu usaha atau kegiatan ekonomi, hal penting yang digunakan untuk membeli bahan baku dan alat adalah ...",
+                options: ["Modal", "Piagam penghargaan", "Buku cerita", "Musik pengantar"],
+                correct: 0,
+                explanation: "Modal berupa uang atau barang sangat diperlukan untuk memulai dan mengembangkan kegiatan ekonomi."
+            },
+            {
+                level: 1,
+                tag: "A. Keberagaman Ekonomi",
+                type: "complex",
+                question: "Manakah yang termasuk contoh bentuk kegiatan ekonomi masyarakat di lingkungan sekitar? (Pilih semua jawaban yang benar!)",
+                options: ["Bertani di sawah", "Menjual makanan di warung", "Belajar kelompok di kelas", "Menjadi nelayan di laut"],
+                correct: [0, 1, 3],
+                explanation: "Bertani, berdagang, dan menjadi nelayan adalah contoh nyata kegiatan ekonomi untuk memenuhi kebutuhan hidup."
+            },
+
+            // LEVEL 2: PETUALANGAN EKONOMI / PRODUKSI, DISTRIBUSI, KONSUMSI (Soal 8 - 14)
+            {
+                level: 2,
+                tag: "G. Produksi",
+                type: "single",
+                question: "Kegiatan menghasilkan barang atau jasa untuk menambah nilai guna disebut ...",
+                options: ["Produksi", "Distribusi", "Konsumsi", "Inovasi"],
+                correct: 0,
+                explanation: "Produksi adalah kegiatan yang menghasilkan barang atau jasa guna memenuhi kebutuhan konsumen."
+            },
+            {
+                level: 2,
+                tag: "G. Produksi",
+                type: "single",
+                question: "Orang atau pihak yang melakukan kegiatan menghasilkan barang atau jasa disebut ...",
+                options: ["Konsumen", "Produsen", "Distributor", "Turis"],
+                correct: 1,
+                explanation: "Produsen adalah sebutan bagi orang atau badan usaha yang menghasilkan barang atau jasa."
+            },
+            {
+                level: 2,
+                tag: "H. Distribusi",
+                type: "single",
+                question: "Pedagang menyalurkan barang dari pabrik produsen kepada konsumen di toko-toko. Kegiatan tersebut dinamakan ...",
+                options: ["Produksi", "Konsumsi", "Distribusi", "Kreativitas"],
+                correct: 2,
+                explanation: "Distribusi adalah kegiatan menyalurkan atau mendistribusikan barang dari produsen ke tangan konsumen."
+            },
+            {
+                level: 2,
+                tag: "H. Distribusi",
+                type: "single",
+                question: "Pihak yang menyalurkan barang dari produsen ke konsumen disebut ...",
+                options: ["Distributor", "Produsen", "Konsumen", "Kreator"],
+                correct: 0,
+                explanation: "Distributor adalah perantara yang menyalurkan barang atau jasa dari produsen kepada konsumen."
+            },
+            {
+                level: 2,
+                tag: "I. Konsumsi",
+                type: "single",
+                question: "Ibu membeli buah di pasar lalu keluarga memakannya di rumah. Kegiatan keluarga memakan buah tersebut disebut ...",
+                options: ["Produksi", "Distribusi", "Konsumsi", "Investasi"],
+                correct: 2,
+                explanation: "Konsumsi adalah kegiatan menghabiskan atau mengurangi nilai guna suatu barang dan jasa untuk memenuhi kebutuhan."
+            },
+            {
+                level: 2,
+                tag: "I. Konsumsi",
+                type: "single",
+                question: "Orang atau pihak yang memakai, menghabiskan, atau menikmati barang dan jasa disebut ...",
+                options: ["Produsen", "Konsumen", "Distributor", "Aktor"],
+                correct: 1,
+                explanation: "Konsumen adalah pihak yang menggunakan atau mengonsumsi barang dan jasa."
+            },
+            {
+                level: 2,
+                tag: "H. Distribusi",
+                type: "complex",
+                question: "Manakah yang termasuk contoh kegiatan distribusi dalam kehidupan sehari-hari? (Pilih semua jawaban yang benar!)",
+                options: ["Kurir mengantar paket belanja online", "Pabrik merakit mobil baru", "Truk mengangkut hasil panen ke pasar", "Siswa memakan nasi di kantin"],
+                correct: [0, 2],
+                explanation: "Kurir mengantar paket dan truk mengangkut hasil panen merupakan contoh kegiatan menyalurkan barang (distribusi)."
+            },
+
+            // LEVEL 3: DUNIA EKONOMI KREATIF (Soal 15 - 21)
+            {
+                level: 3,
+                tag: "J. Ekonomi Kreatif",
+                type: "single",
+                question: "Konsep ekonomi di era modern yang mengandalkan ide, kreativitas, dan keterampilan intelektual disebut ...",
+                options: ["Ekonomi tradisional", "Ekonomi kreatif", "Ekonomi agraris", "Ekonomi barter"],
+                correct: 1,
+                explanation: "Ekonomi kreatif adalah gelombang ekonomi baru yang berfokus pada kreativitas dan ide intelektual manusia."
+            },
+            {
+                level: 3,
+                tag: "K. Kreativitas & L. Inovasi",
+                type: "single",
+                question: "Kemampuan menciptakan suatu ide atau gagasan baru yang unik disebut ...",
+                options: ["Kreativitas", "Konsumsi", "Distribusi", "Imitasi"],
+                correct: 0,
+                explanation: "Kreativitas adalah kemampuan menghasilkan ide atau cara baru yang unik dan orisinal."
+            },
+            {
+                level: 3,
+                tag: "L. Inovasi",
+                type: "single",
+                question: "Penerapan suatu ide baru atau pengembangan produk lama menjadi lebih bermanfaat disebut ...",
+                options: ["Inovasi", "Produksi massal", "Distribusi ulang", "Penyimpanan"],
+                correct: 0,
+                explanation: "Inovasi adalah pembaruan atau penciptaan hal baru yang memberikan nilai tambah lebih baik."
+            },
+            {
+                level: 3,
+                tag: "M. Film, Animasi & N. Desain",
+                type: "single",
+                question: "Pembuatan film kartun, animasi, dan perancangan mode pakaian (fashion) merupakan contoh dari bidang ...",
+                options: ["Pertanian konvensional", "Industri ekonomi kreatif", "Pertambangan batu bara", "Perikanan laut"],
+                correct: 1,
+                explanation: "Film, animasi, dan desain mode adalah beberapa subsektor penting dalam industri ekonomi kreatif."
+            },
+            {
+                level: 3,
+                tag: "P. Teknologi & Aplikasi",
+                type: "single",
+                question: "Perkembangan teknologi digital dan aplikasi smartphone saat ini sangat membantu pelaku ekonomi kreatif dalam hal ...",
+                options: ["Mempercepat promosi dan pemasaran produk", "Membuat perangkat rusak", "Menghentikan semua kegiatan usaha", "Menutup akses pasar"],
+                correct: 0,
+                explanation: "Teknologi dan aplikasi digital memudahkan pelaku ekonomi kreatif mempromosikan dan menjual produk secara luas."
+            },
+            {
+                level: 3,
+                tag: "Q. Manfaat Ekonomi Kreatif",
+                type: "single",
+                question: "Apa salah satu manfaat utama dari berkembangnya ekonomi kreatif di masyarakat?",
+                options: ["Menciptakan lapangan kerja baru dan mengurangi pengangguran", "Membuat masyarakat malas bekerja", "Mengurangi kreativitas anak muda", "Menghilangkan teknologi"],
+                correct: 0,
+                explanation: "Ekonomi kreatif membuka banyak lapangan pekerjaan baru dan mendongkrak kesejahteraan masyarakat."
+            },
+            {
+                level: 3,
+                tag: "J. Ciri-ciri Ekonomi Kreatif",
+                type: "complex",
+                question: "Manakah yang merupakan ciri-ciri dari ekonomi kreatif? (Pilih semua jawaban yang benar!)",
+                options: ["Mengandalkan ide dan kreativitas", "Menghasilkan produk yang unik", "Memanfaatkan teknologi digital", "Hanya mengandalkan tenaga otot saja"],
+                correct: [0, 1, 2],
+                explanation: "Ekonomi kreatif berpusat pada ide, keunikan produk, serta pemanfaatan teknologi, bukan sekadar tenaga fisik."
+            }
+        ];
+
+        // State Game Global
+        let gameState = {
+            playerName: "",
+            currentLevel: 1,
+            currentQuestionIndex: 0,
+            score: 0,
+            lives: 3,
+            hintsLeft: 3,
+            userAnswers: [], // Menyimpan riwayat jawaban untuk review
+            selectedOptions: [], // Untuk pilihan ganda biasa / kompleks
+            answeredCurrent: false
+        };
+
+        // Fungsi Transisi Screen Aman
+        function transitionScreens(hideId, showId) {
+            const hideScreen = document.getElementById(hideId);
+            const showScreen = document.getElementById(showId);
+
+            if (!hideScreen || !showScreen) {
+                console.error("Screen tidak ditemukan:", hideId, showId);
+                return;
+            }
+
+            document.querySelectorAll('[id^="screen-"]').forEach(screen => {
+                screen.classList.add("hidden-screen");
+                screen.style.pointerEvents = "none";
+            });
+
+            showScreen.classList.remove("hidden-screen");
+            showScreen.style.pointerEvents = "auto";
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+
+        // Custom Alert Handler
+        function showCustomAlert(text) {
+            document.getElementById("customAlertText").textContent = text;
+            document.getElementById("custom-alert").classList.remove("hidden-screen");
+        }
+
+        function closeCustomAlert() {
+            document.getElementById("custom-alert").classList.add("hidden-screen");
+        }
+
+        // Handler Mulai Game dari Halaman Awal
+        function handleStartGame() {
+            const select = document.getElementById("playerNameSelect");
+
+            if (!select || !select.value) {
+                showCustomAlert("Silakan pilih namamu terlebih dahulu 😊");
+                return;
+            }
+
+            gameState.playerName = select.value;
+
+            document.getElementById("hudName").textContent = select.value;
+            document.getElementById("greetingTitle").textContent = `Hai, ${select.value}!`;
+            document.getElementById("resultPlayerGreeting").textContent = `Hai, ${select.value}!`;
+
+            transitionScreens("screen-welcome", "screen-greeting");
+        }
+
+        // Handler Mulai Petualangan
+        function beginAdventure() {
+            gameState.currentQuestionIndex = 0;
+            gameState.currentLevel = 1;
+            gameState.score = 0;
+            gameState.lives = 3;
+            gameState.hintsLeft = 3;
+            gameState.userAnswers = [];
+            gameState.selectedOptions = [];
+            gameState.answeredCurrent = false;
+
+            updateHUD();
+            transitionScreens("screen-greeting", "screen-level-intro");
+            showLevelIntro(1);
+        }
+
+        // Tampilkan Intro Level
+        function showLevelIntro(levelNum) {
+            gameState.currentLevel = levelNum;
+            const badge = document.getElementById("levelBadge");
+            const title = document.getElementById("levelTitle");
+            const desc = document.getElementById("levelDesc");
+
+            if (levelNum === 1) {
+                badge.textContent = "🌱 LEVEL 1";
+                title.textContent = "MENGENAL EKONOMI";
+                desc.textContent = "Soal mudah tentang kegiatan ekonomi dan keberagaman ekonomi masyarakat.";
+            } else if (levelNum === 2) {
+                badge.textContent = "🚚 LEVEL 2";
+                title.textContent = "PETUALANGAN EKONOMI";
+                desc.textContent = "Soal tentang kegiatan produksi, distribusi, dan konsumsi dalam kehidupan sehari-hari.";
+            } else if (levelNum === 3) {
+                badge.textContent = "💡 LEVEL 3";
+                title.textContent = "DUNIA EKONOMI KREATIF";
+                desc.textContent = "Soal tentang kreativitas, inovasi, teknologi, dan manfaat ekonomi kreatif.";
+            }
+        }
+
+        // Mulai Soal Level Berjalan
+        function startCurrentLevelQuestions() {
+            document.getElementById("game-hud").classList.remove("hidden-screen");
+            transitionScreens("screen-level-intro", "screen-quiz");
+            loadQuestion();
+        }
+
+        // Update HUD (Skor, Nyawa, Progress)
+        function updateHUD() {
+            document.getElementById("hudScore").textContent = gameState.score;
+            document.getElementById("hudQuestionNum").textContent = `Soal ${gameState.currentQuestionIndex + 1}/${gameQuestions.length}`;
+            document.getElementById("hintsCount").textContent = gameState.hintsLeft;
+            
+            // Render nyawa hati
+            let hearts = "";
+            for (let i = 0; i < 3; i++) {
+                hearts += (i < gameState.lives) ? "❤️" : "🤍";
+            }
+            document.getElementById("hudLives").textContent = hearts;
+
+            // Progress bar
+            const progress = ((gameState.currentQuestionIndex) / gameQuestions.length) * 100;
+            document.getElementById("progressBar").style.width = `${progress}%`;
+        }
+
+        // Load Soal Aktif
+        function loadQuestion() {
+            gameState.answeredCurrent = false;
+            gameState.selectedOptions = [];
+            updateHUD();
+
+            const q = gameQuestions[gameState.currentQuestionIndex];
+
+            document.getElementById("questionTag").textContent = q.tag;
+            document.getElementById("questionTitle").textContent = `PERTANYAAN ${String(gameState.currentQuestionIndex + 1).padStart(2, '0')}`;
+            document.getElementById("questionText").textContent = q.question;
+
+            const complexNote = document.getElementById("complexNote");
+            if (q.type === "complex") {
+                complexNote.classList.remove("hidden-screen");
+            } else {
+                complexNote.classList.add("hidden-screen");
+            }
+
+            // Render Pilihan Jawaban
+            const container = document.getElementById("optionsContainer");
+            container.innerHTML = "";
+
+            q.options.forEach((opt, idx) => {
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = "option-btn w-full p-4 text-left font-semibold rounded-xl border-2 border-sky-100 bg-sky-50/50 hover:bg-sky-100/70 hover:border-sky-300 transition flex items-center gap-3 pointer-events-auto text-slate-700 text-sm md:text-base";
+                btn.dataset.index = idx;
+                
+                let indicator = q.type === "complex" ? "☐" : String.fromCharCode(65 + idx) + ".";
+                
+                btn.innerHTML = `<span class="w-8 h-8 rounded-lg bg-white border border-sky-200 flex items-center justify-center font-bold text-brand-blueBright shrink-0">${indicator}</span> <span>${opt}</span>`;
+                
+                btn.onclick = () => selectOption(idx, q.type);
+                container.appendChild(btn);
+            });
+
+            // Reset Tombol & Feedback
+            document.getElementById("quizActionContainer").classList.remove("hidden-screen");
+            document.getElementById("submitAnswerBtn").textContent = "PERIKSA JAWABAN";
+            document.getElementById("feedbackContainer").classList.add("hidden-screen");
+        }
+
+        // Pilih Opsi Jawaban
+        function selectOption(idx, type) {
+            if (gameState.answeredCurrent) return;
+
+            const buttons = document.querySelectorAll(".option-btn");
+
+            if (type === "single") {
+                buttons.forEach(b => {
+                    b.classList.remove("border-brand-pinkBright", "bg-pink-50");
+                    b.classList.add("border-sky-100", "bg-sky-50/50");
+                });
+                const target = buttons[idx];
+                target.classList.remove("border-sky-100", "bg-sky-50/50");
+                target.classList.add("border-brand-pinkBright", "bg-pink-50");
+                gameState.selectedOptions = [idx];
+            } else {
+                // Kompleks (bisa banyak)
+                const target = buttons[idx];
+                const pos = gameState.selectedOptions.indexOf(idx);
+                if (pos > -1) {
+                    gameState.selectedOptions.splice(pos, 1);
+                    target.classList.remove("border-brand-pinkBright", "bg-pink-50");
+                    target.classList.add("border-sky-100", "bg-sky-50/50");
+                    target.querySelector("span").textContent = "☐";
+                } else {
+                    gameState.selectedOptions.push(idx);
+                    target.classList.remove("border-sky-100", "bg-sky-50/50");
+                    target.classList.add("border-brand-pinkBright", "bg-pink-50");
+                    target.querySelector("span").textContent = "☑";
+                }
+            }
+        }
+
+        // Periksa Jawaban
+        function submitAnswer() {
+            if (gameState.answeredCurrent) return;
+
+            if (gameState.selectedOptions.length === 0) {
+                showCustomAlert("Silakan pilih salah satu jawaban terlebih dahulu! 😊");
+                return;
+            }
+
+            gameState.answeredCurrent = true;
+            document.getElementById("quizActionContainer").classList.add("hidden-screen");
+
+            const q = gameQuestions[gameState.currentQuestionIndex];
+            let isCorrect = false;
+
+            if (q.type === "single") {
+                isCorrect = (gameState.selectedOptions[0] === q.correct);
+            } else {
+                // Cek array kompleks
+                const userArr = [...gameState.selectedOptions].sort();
+                const correctArr = [...q.correct].sort();
+                isCorrect = (userArr.length === correctArr.length && userArr.every((val, i) => val === correctArr[i]));
+            }
+
+            // Simpan riwayat jawaban untuk review
+            gameState.userAnswers.push({
+                question: q.question,
+                type: q.type,
+                options: q.options,
+                userAnswer: [...gameState.selectedOptions],
+                correctAnswer: q.type === "single" ? [q.correct] : q.correct,
+                isCorrect: isCorrect,
+                explanation: q.explanation,
+                tag: q.tag
+            });
+
+            const feedbackContainer = document.getElementById("feedbackContainer");
+            const feedbackTitleText = document.getElementById("feedbackTitleText");
+            const feedbackExplanation = document.getElementById("feedbackExplanation");
+
+            feedbackContainer.classList.remove("hidden-screen");
+
+            if (isCorrect) {
+                gameState.score += 100;
+                feedbackContainer.className = "p-4 rounded-2xl border-2 border-emerald-300 bg-emerald-50 space-y-2 animate-bounce-short";
+                feedbackTitleText.textContent = "BENAR! Hebat!";
+                feedbackContainer.querySelector("div span").textContent = "🎉";
+                feedbackExplanation.textContent = q.explanation;
+                confetti({ particleCount: 60, spread: 60, origin: { y: 0.7 } });
+            } else {
+                gameState.lives -= 1;
+                feedbackContainer.className = "p-4 rounded-2xl border-2 border-red-300 bg-red-50 space-y-2 animate-shake";
+                feedbackTitleText.textContent = "Belum tepat!";
+                feedbackContainer.querySelector("div span").textContent = "💡";
+                
+                let correctText = "";
+                if (q.type === "single") {
+                    correctText = `Jawaban yang benar: ${q.options[q.correct]}`;
+                } else {
+                    let correctStrs = q.correct.map(i => q.options[i]).join(", ");
+                    correctText = `Jawaban yang benar: ${correctStrs}`;
+                }
+
+                feedbackExplanation.innerHTML = `<strong>${correctText}</strong><br><br>${q.explanation}`;
+            }
+
+            updateHUD();
+
+            // Cek nyawa habis
+            if (gameState.lives <= 0) {
+                setTimeout(() => {
+                    document.getElementById("modal-out-of-lives").classList.remove("hidden-screen");
+                }, 1200);
+            }
+        }
+
+        // Lanjut ke Soal Berikutnya
+        function nextQuestion() {
+            gameState.currentQuestionIndex++;
+
+            // Cek perpindahan level otomatis berdasarkan indeks soal
+            // Level 1: 0 - 6 (7 soal), Level 2: 7 - 13 (7 soal), Level 3: 14 - 20 (7 soal)
+            if (gameState.currentQuestionIndex === 7 && gameState.currentLevel === 1) {
+                showLevelCompletionScreen(1);
+                return;
+            } else if (gameState.currentQuestionIndex === 14 && gameState.currentLevel === 2) {
+                showLevelCompletionScreen(2);
+                return;
+            }
+
+            if (gameState.currentQuestionIndex < gameQuestions.length) {
+                loadQuestion();
+            } else {
+                showResultScreen();
+            }
+        }
+
+        // Layar Selesai Level
+        function showLevelCompletionScreen(finishedLevel) {
+            document.getElementById("game-hud").classList.add("hidden-screen");
+            document.getElementById("levelCompleteMessage").textContent = `Hebat, ${gameState.playerName}! Kamu berhasil melewati Level ${finishedLevel}.`;
+            document.getElementById("levelCompleteScore").textContent = gameState.score;
+            transitionScreens("screen-quiz", "screen-level-complete");
+        }
+
+        // Lanjut ke Level Berikutnya setelah layar level selesai
+        function proceedToNextLevel() {
+            const nextLvl = gameState.currentLevel + 1;
+            showLevelIntro(nextLvl);
+            transitionScreens("screen-level-complete", "screen-level-intro");
+        }
+
+        // Fitur Bantuan Petunjuk (Hint)
+        function useHint() {
+            if (gameState.hintsLeft <= 0 || gameState.answeredCurrent) return;
+
+            gameState.hintsLeft--;
+            updateHUD();
+
+            const q = gameQuestions[gameState.currentQuestionIndex];
+            if (q.type === "single") {
+                // Cari opsi salah untuk dihilangkan/diberi clue
+                const buttons = document.querySelectorAll(".option-btn");
+                let wrongIndices = [];
+                q.options.forEach((_, idx) => {
+                    if (idx !== q.correct) wrongIndices.push(idx);
+                });
+                if (wrongIndices.length > 0) {
+                    let randomWrong = wrongIndices[Math.floor(Math.random() * wrongIndices.length)];
+                    buttons[randomWrong].style.opacity = "0.3";
+                    buttons[randomWrong].style.pointerEvents = "none";
+                }
+            }
+
+            showCustomAlert(`Petunjuk: ${q.explanation.substring(0, 80)}...`);
+        }
+
+        // Opsi Nyawa Habis: Coba Lagi Level
+        function retryCurrentLevel() {
+            document.getElementById("modal-out-of-lives").classList.add("hidden-screen");
+            gameState.lives = 3;
+            // Kembalikan ke awal level saat ini
+            if (gameState.currentLevel === 1) gameState.currentQuestionIndex = 0;
+            else if (gameState.currentLevel === 2) gameState.currentQuestionIndex = 7;
+            else if (gameState.currentLevel === 3) gameState.currentQuestionIndex = 14;
+
+            document.getElementById("game-hud").classList.remove("hidden-screen");
+            transitionScreens("screen-quiz", "screen-quiz"); // refresh
+            loadQuestion();
+        }
+
+        // Opsi Nyawa Habis: Lanjut Bermain
+        function continuePlayingAfterLives() {
+            document.getElementById("modal-out-of-lives").classList.add("hidden-screen");
+            gameState.lives = 1; // Berikan 1 nyawa darurat
+            document.getElementById("game-hud").classList.remove("hidden-screen");
+            nextQuestion();
+        }
+
+        // Tampilkan Halaman Hasil Akhir
+        function showResultScreen() {
+            document.getElementById("game-hud").classList.add("hidden-screen");
+
+            let correctCount = gameState.userAnswers.filter(a => a.isCorrect).length;
+            let wrongCount = gameState.userAnswers.length - correctCount;
+            let accuracy = Math.round((correctCount / gameQuestions.length) * 100);
+
+            document.getElementById("finalScore").textContent = gameState.score;
+            document.getElementById("finalCorrect").textContent = correctCount;
+            document.getElementById("finalWrong").textContent = wrongCount;
+            document.getElementById("finalAccuracy").textContent = `${accuracy}%`;
+
+            const badge = document.getElementById("achievementBadge");
+            if (accuracy >= 90) {
+                badge.textContent = "🏆 AHLI EKONOMI KREATIF!";
+            } else if (accuracy >= 75) {
+                badge.textContent = "🌟 PENJELAJAH EKONOMI!";
+            } else if (accuracy >= 60) {
+                badge.textContent = "💡 CALON AHLI EKONOMI!";
+            } else {
+                badge.textContent = "🌱 TERUS BERLATIH!";
+            }
+
+            transitionScreens("screen-quiz", "screen-result");
+            confetti({ particleCount: 120, spread: 80, origin: { y: 0.6 } });
+        }
+
+        // Halaman Pembahasan
+        function showReviewScreen() {
+            const container = document.getElementById("reviewListContainer");
+            container.innerHTML = "";
+
+            gameState.userAnswers.forEach((ans, idx) => {
+                let userStr = "";
+                let correctStr = "";
+
+                if (ans.type === "single") {
+                    userStr = ans.userAnswer.length > 0 ? ans.options[ans.userAnswer[0]] : "Tidak dijawab";
+                    correctStr = ans.options[ans.correctAnswer[0]];
+                } else {
+                    userStr = ans.userAnswer.length > 0 ? ans.userAnswer.map(i => ans.options[i]).join(", ") : "Tidak dijawab";
+                    correctStr = ans.correctAnswer.map(i => ans.options[i]).join(", ");
+                }
+
+                const item = document.createElement("div");
+                item.className = `p-4 rounded-2xl border-2 ${ans.isCorrect ? 'border-emerald-200 bg-emerald-50/50' : 'border-red-200 bg-red-50/50'} space-y-1 text-sm`;
+                
+                item.innerHTML = `
+                    <div class="font-bold text-slate-800">Soal ${idx + 1}: ${ans.question}</div>
+                    <div class="text-xs text-slate-500 font-semibold">${ans.tag}</div>
+                    <div class="pt-1">Jawabanmu: <span class="font-semibold ${ans.isCorrect ? 'text-emerald-600' : 'text-red-500'}">${userStr} ${ans.isCorrect ? '✅' : '❌'}</span></div>
+                    ${!ans.isCorrect ? `<div class="text-slate-700">Jawaban benar: <span class="font-semibold text-emerald-600">${correctStr}</span></div>` : ''}
+                    <div class="text-xs text-slate-600 bg-white/80 p-2 rounded-xl mt-1 border border-sky-100"><strong>Penjelasan:</strong> ${ans.explanation}</div>
+                `;
+                container.appendChild(item);
+            });
+
+            transitionScreens("screen-result", "screen-review");
+        }
+
+        function backToResult() {
+            transitionScreens("screen-review", "screen-result");
+        }
+
+        function restartGame() {
+            beginAdventure();
+        }
+
+        function backToMenu() {
+            document.getElementById("playerNameSelect").value = "";
+            transitionScreens("screen-result", "screen-welcome");
+        }
+    </script>
+</body>
+</html>
