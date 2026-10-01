@@ -282,7 +282,6 @@
                 <div class="flex items-center gap-4">
                     <span>⭐ Skor: <span id="hudScore" class="text-brand-pinkBright font-bold">0</span></span>
                     <span>📍 <span id="hudQuestionNum">Soal 1/30</span></span>
-                    <span id="hudLives" class="text-red-500">❤️❤️❤</span>
                 </div>
             </div>
 
@@ -341,7 +340,7 @@
                 </p>
                 <div class="pt-2">
                     <button type="button" onclick="nextQuestion()" class="w-full py-3 bg-gradient-to-r from-brand-pinkBright to-pink-500 hover:from-pink-600 text-white font-bold rounded-xl shadow-md transition pointer-events-auto">
-                        ➡️ LANJUT
+                        ➡️️ LANJUT
                     </button>
                 </div>
             </div>
@@ -434,27 +433,6 @@
                 <button type="button" onclick="backToResult()" class="px-8 py-3 bg-brand-blueBright hover:bg-brand-blueDark text-white font-bold rounded-xl shadow transition pointer-events-auto">
                     ⬅️ KEMBALI KE HASIL
                 </button>
-            </div>
-        </div>
-
-        <!-- ========================================== -->
-        <!-- MODAL NYAWA HABIS -->
-        <!-- ========================================== -->
-        <div id="modal-out-of-lives" class="hidden-screen fixed inset-0 bg-slate-900/50 backdrop-blur-sm flex items-center justify-center z-50 p-4">
-            <div class="bg-white rounded-3xl p-6 md:p-8 max-w-sm w-full text-center space-y-4 border-4 border-pink-200 shadow-2xl">
-                <div class="text-5xl">❤️💔</div>
-                <h3 class="text-xl font-extrabold text-slate-800">Nyawamu Habis!</h3>
-                <p class="text-slate-600 text-sm font-medium">
-                    "Nyawamu habis, tetapi kamu masih bisa melanjutkan petualangan!"
-                </p>
-                <div class="flex flex-col gap-2 pt-2">
-                    <button type="button" onclick="retryCurrentLevel()" class="w-full py-3 bg-brand-blueBright hover:bg-brand-blueDark text-white font-bold rounded-xl shadow transition pointer-events-auto">
-                        🔄 Coba Lagi Level Ini
-                    </button>
-                    <button type="button" onclick="continuePlayingAfterLives()" class="w-full py-3 bg-brand-pinkBright hover:bg-pink-600 text-white font-bold rounded-xl shadow transition pointer-events-auto">
-                        ➡️ Lanjut Bermain
-                    </button>
-                </div>
             </div>
         </div>
 
@@ -881,7 +859,6 @@
             currentLevel: 1,
             currentQuestionIndex: 0,
             score: 0,
-            lives: 3,
             hintsLeft: 3,
             userAnswers: [],
             selectedOptions: [],
@@ -1157,7 +1134,6 @@
             gameState.currentQuestionIndex = 0;
             gameState.currentLevel = 1;
             gameState.score = 0;
-            gameState.lives = 3;
             gameState.hintsLeft = 3;
             gameState.userAnswers = [];
             gameState.selectedOptions = [];
@@ -1197,17 +1173,11 @@
             loadQuestion();
         }
 
-        // Update HUD (Skor, Nyawa, Progress)
+        // Update HUD (Skor, Progress)
         function updateHUD() {
             document.getElementById("hudScore").textContent = gameState.score;
             document.getElementById("hudQuestionNum").textContent = `Soal ${gameState.currentQuestionIndex + 1}/${gameQuestions.length}`;
             document.getElementById("hintsCount").textContent = gameState.hintsLeft;
-            
-            let hearts = "";
-            for (let i = 0; i < 3; i++) {
-                hearts += (i < gameState.lives) ? "❤️" : "🤍";
-            }
-            document.getElementById("hudLives").textContent = hearts;
 
             const total = gameQuestions.length;
             const current = gameState.currentQuestionIndex + 1;
@@ -1344,7 +1314,6 @@
                 feedbackExplanation.textContent = q.explanation;
                 confetti({ particleCount: 60, spread: 60, origin: { y: 0.7 } });
             } else {
-                gameState.lives -= 1;
                 feedbackContainer.className = "p-4 rounded-2xl border-2 border-red-300 bg-red-50 space-y-2 animate-shake";
                 feedbackTitleText.textContent = "Belum tepat!";
                 feedbackContainer.querySelector("div span").textContent = "💡";
@@ -1362,12 +1331,6 @@
 
             recalculateScoreFromAnswers();
             updateHUD();
-
-            if (gameState.lives <= 0) {
-                setTimeout(() => {
-                    document.getElementById("modal-out-of-lives").classList.remove("hidden-screen");
-                }, 1200);
-            }
         }
 
         function recalculateScoreFromAnswers() {
@@ -1427,34 +1390,6 @@
             }
 
             showCustomAlert(`Petunjuk: ${q.explanation.substring(0, 90)}...`);
-        }
-
-        function retryCurrentLevel() {
-            document.getElementById("modal-out-of-lives").classList.add("hidden-screen");
-            gameState.lives = 3;
-
-            gameState.userAnswers = gameState.userAnswers.filter(ans => ans.level !== gameState.currentLevel);
-
-            if (gameState.currentLevel === 1) {
-                gameState.currentQuestionIndex = 0;
-            } else if (gameState.currentLevel === 2) {
-                gameState.currentQuestionIndex = 10;
-            } else if (gameState.currentLevel === 3) {
-                gameState.currentQuestionIndex = 20;
-            }
-
-            recalculateScoreFromAnswers();
-
-            document.getElementById("game-hud").classList.remove("hidden-screen");
-            transitionScreens("screen-quiz", "screen-quiz");
-            loadQuestion();
-        }
-
-        function continuePlayingAfterLives() {
-            document.getElementById("modal-out-of-lives").classList.add("hidden-screen");
-            gameState.lives = 1;
-            document.getElementById("game-hud").classList.remove("hidden-screen");
-            nextQuestion();
         }
 
         function showResultScreen() {
@@ -1570,3 +1505,4 @@
     </script>
 </body>
 </html>
+```[cite: 2]
